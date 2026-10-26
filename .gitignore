@@ -1,0 +1,32 @@
+# Dependencias y builds
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Secretos y entornos (solo se versiona .env.example)
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Pruebas
+playwright-report/
+test-results/
+blob-report/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Claude Code: configuración local de cada persona
+.claude/settings.local.json
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

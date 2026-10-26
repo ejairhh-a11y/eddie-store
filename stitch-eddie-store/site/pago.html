@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "background": "#0f131c",
+                "tertiary-fixed-dim": "#ffb3b3",
+                "on-secondary": "#00363d",
+                "on-secondary-fixed": "#001f24",
+                "on-error": "#690005",
+                "on-tertiary-fixed": "#400009",
+                "surface-dim": "#0f131c",
+                "tertiary-container": "#c0002e",
+                "tertiary": "#ffb3b3",
+                "surface": "#0f131c",
+                "error": "#ffb4ab",
+                "secondary": "#bdf4ff",
+                "surface-container-lowest": "#0a0e16",
+                "on-primary-container": "#d1d7ff",
+                "on-secondary-container": "#00616d",
+                "surface-container-low": "#181c24",
+                "on-background": "#dfe2ee",
+                "on-primary-fixed-variant": "#0036bb",
+                "surface-container-highest": "#31353e",
+                "secondary-fixed-dim": "#00daf3",
+                "inverse-primary": "#0d4aef",
+                "surface-bright": "#353942",
+                "on-secondary-fixed-variant": "#004f58",
+                "primary-container": "#0e4bef",
+                "secondary-container": "#00e3fd",
+                "on-tertiary": "#680014",
+                "outline-variant": "#434656",
+                "on-surface": "#dfe2ee",
+                "on-surface-variant": "#c4c5d9",
+                "primary-fixed": "#dde1ff",
+                "error-container": "#93000a",
+                "surface-tint": "#b8c4ff",
+                "surface-container": "#1c2028",
+                "tertiary-fixed": "#ffdad9",
+                "on-tertiary-container": "#ffcecd",
+                "inverse-surface": "#dfe2ee",
+                "on-error-container": "#ffdad6",
+                "secondary-fixed": "#9cf0ff",
+                "primary-fixed-dim": "#b8c4ff",
+                "on-primary": "#002486",
+                "primary": "#b8c4ff",
+                "outline": "#8e90a2",
+                "surface-variant": "#31353e",
+                "on-primary-fixed": "#001454",
+                "inverse-on-surface": "#2c3039",
+                "surface-container-high": "#262a33",
+                "on-tertiary-fixed-variant": "#920021"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter-desktop": "1.5rem",
+                "margin-mobile": "1rem",
+                "space-3xl": "4.5rem",
+                "margin-tablet": "2rem",
+                "space-2xs": "0.125rem",
+                "space-xl": "2rem",
+                "space-xs": "0.25rem",
+                "space-lg": "1.5rem",
+                "space-4xl": "6rem",
+                "space-md": "1rem",
+                "margin-desktop": "3.5rem",
+                "gutter-mobile": "1rem",
+                "space-sm": "0.5rem",
+                "space-2xl": "3rem"
+        },
+        "fontFamily": {
+                "display-hero-mobile": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "body-sm": [
+                        "Space Grotesk", "sans-serif"
+                ],
+                "headline-xl-mobile": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "body-lg": [
+                        "Space Grotesk", "sans-serif"
+                ],
+                "label-caps": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "headline-xl": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "headline-lg": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "headline-md": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "label-data": [
+                        "JetBrains Mono", "monospace"
+                ],
+                "caption-spec": [
+                        "JetBrains Mono", "monospace"
+                ],
+                "display-hero": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "body-md": [
+                        "Space Grotesk", "sans-serif"
+                ],
+                "headline-sm": [
+                        "Barlow Condensed", "sans-serif"
+                ]
+        },
+        "fontSize": {
+                "display-hero-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "50px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-xl-mobile": [
+                        "36px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "14px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.12em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-xl": [
+                        "56px",
+                        {
+                                "lineHeight": "58px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "38px",
+                        {
+                                "lineHeight": "42px",
+                                "letterSpacing": "0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "26px",
+                        {
+                                "lineHeight": "30px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-data": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.08em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "caption-spec": [
+                        "10px",
+                        {
+                                "lineHeight": "14px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-hero": [
+                        "84px",
+                        {
+                                "lineHeight": "84px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-md": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "20px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }</script></head><body class="bg-background font-body-md text-body-md text-on-background min-h-screen selection:bg-secondary-container selection:text-on-secondary"><header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.6)]"><div class="w-full bg-surface-container-lowest py-space-xs px-margin-mobile lg:px-margin-desktop"><div class="max-w-7xl mx-auto flex items-center justify-between font-label-data text-label-data"><div class="flex items-center gap-space-sm text-secondary tracking-wider overflow-hidden text-ellipsis whitespace-nowrap"><span class="flex h-2 w-2 rounded-full bg-secondary-container animate-pulse"></span><span class="truncate font-medium">🏁 NUEVA GAMA YAMAHA YZ 2025 YA DISPONIBLE | ENTREGA INMEDIATA EN PISTA O CONCESIONARIO | FINANCIACIÓN 0% TAE</span></div><div class="hidden md:flex items-center gap-space-lg text-on-surface-variant"><span class="flex items-center gap-space-xs text-on-surface"><span class="material-symbols-outlined text-[14px] text-secondary">verified</span> Official Yamaha Pro-Dealer #2841</span><span class="text-outline-variant">|</span><span class="hover:text-secondary cursor-pointer transition-colors">Paddock Delivery Service</span></div></div></div><div class="h-20 max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="Eddie Store Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSQ1bvEO4eJaWhj_NX4vrRyXVAJfsLdM7WUVhiTuMZMdQD8AoQrX1sgIEDz4x5CleOjOmNjh2fWACNmJQhckVm-v1p3JFlS64z5Dw59r-RTJceKM3llC8iCD_vshfB5D7l2hKrM-2xT_UB4uYS86srALEldn5iw_Y9UzYrlM7CyvXeC4IghsETMKjKsQlV-hEEFBOLDrLuabkhY75GFOrVlOz67Xy3u475xLhCp3KA6Xck47JnpjRK"/><div class="flex flex-col leading-none"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface">EDDIE STORE</span><span class="font-caption-spec text-caption-spec tracking-widest uppercase text-secondary font-bold">Yamaha Racing Department</span></div></div><div class="hidden xl:flex items-center flex-1 max-w-md mx-space-lg"><div class="relative w-full flex items-center bg-surface-container-low px-space-md py-space-xs rounded focus-within:bg-surface-container"><span class="material-symbols-outlined text-outline text-[18px] mr-space-sm">search</span><input class="bg-transparent w-full text-on-surface font-body-sm text-body-sm placeholder-outline focus:outline-none" placeholder="Buscar bastidor, modelo YZ, recambio GYTR..." type="text"/><div class="flex items-center gap-1 font-caption-spec text-caption-spec bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded"><span class="text-[9px]">⌘</span><span>K</span></div></div></div><div class="flex items-center gap-space-sm sm:gap-space-md flex-shrink-0"><a class="hidden lg:flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high hover:bg-surface-bright transition-all" data-path="concesionario-y-taller" href="#"><span class="material-symbols-outlined text-secondary text-[16px]">pin_drop</span><span class="font-label-data text-label-data text-on-surface uppercase">Concesionario</span></a><a class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high hover:bg-surface-bright transition-all" data-path="gama-yz-motos" href="#"><span class="material-symbols-outlined text-secondary text-[16px]">compare_arrows</span><span class="font-label-data text-label-data text-on-surface uppercase">Comparar</span></a><a class="relative flex items-center justify-center p-space-xs rounded bg-surface-container-high hover:bg-surface-bright text-on-surface transition-colors" data-path="carrito-de-compra" href="#"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span class="absolute -top-1.5 -right-1.5 bg-primary-container text-on-primary font-label-data text-caption-spec font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center">1</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="w-full bg-surface-container-lowest/90"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop"><nav class="flex items-center gap-space-xs md:gap-space-sm overflow-x-auto py-space-xs scrollbar-none" data-active-classes="text-secondary bg-surface-container font-bold"><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="gama-yz-motos" href="#">Gama YZ (Motos)</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="4-tiempos-yz450f-yz250f" href="#">4 Tiempos (YZ450F / YZ250F)</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="2-tiempos-yz250-yz125-yz85" href="#">2 Tiempos (YZ250 / YZ125 / YZ85)</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="cross-country-y-enduro" href="#">Cross-Country &amp; Enduro</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="accesorios-y-gytr" href="#">Accesorios &amp; GYTR</a><a aria-current="page" class="uppercase px-space-sm py-space-xs rounded transition-all whitespace-nowrap text-secondary bg-surface-container font-bold" data-path="simulador-financiacion" href="#">Simulador Financiación</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="concesionario-y-taller" href="#">Concesionario &amp; Taller</a></nav></div></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full">
+<!-- Paddock Telemetry Bar / Order State Header -->
+<section class="w-full bg-surface-container-lowest px-margin-mobile lg:px-margin-desktop py-space-md">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 bg-secondary-container rounded-full animate-ping"></span>
+<span class="font-caption-spec text-caption-spec uppercase text-secondary tracking-widest">PADDOCK ORDER UNIT // EXPEDIENTE: #YZ-2025-ESP-9842</span>
+<span class="text-outline-variant font-caption-spec text-caption-spec hidden sm:inline">|</span>
+<span class="font-caption-spec text-caption-spec text-on-surface-variant hidden sm:inline">CONCESIONARIO OFICIAL EDDIE STORE BARCELONA</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs font-label-data text-label-data text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<span>TRANSACCIÓN ENCRIPTADA SSL 256-BIT</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Stepper Banner -->
+<section class="w-full bg-surface-container-low px-margin-mobile lg:px-margin-desktop py-space-lg">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Step 1 (Active) -->
+<div class="relative bg-surface-container-high p-space-md flex items-center justify-between shadow-md">
+<div class="flex items-center gap-space-md min-w-0">
+<span class="font-headline-md text-headline-md text-secondary-container">01</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-on-surface uppercase truncate">Configuración &amp; Financiación</span>
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-medium">Fase Actual // Parametrizando</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[22px] flex-shrink-0">tune</span>
+<div class="absolute bottom-0 left-0 h-1 bg-secondary-container w-full"></div>
+</div>
+<!-- Step 2 -->
+<div class="relative bg-surface-container p-space-md flex items-center justify-between opacity-60">
+<div class="flex items-center gap-space-md min-w-0">
+<span class="font-headline-md text-headline-md text-outline">02</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-on-surface uppercase truncate">Datos &amp; Garantías Paddock</span>
+<span class="font-caption-spec text-caption-spec text-outline uppercase font-medium">Validación de Licencia &amp; Titular</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[22px] flex-shrink-0">verified_user</span>
+</div>
+<!-- Step 3 -->
+<div class="relative bg-surface-container p-space-md flex items-center justify-between opacity-60">
+<div class="flex items-center gap-space-md min-w-0">
+<span class="font-headline-md text-headline-md text-outline">03</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-caps text-label-caps text-on-surface uppercase truncate">Entrega en Pista &amp; Pago</span>
+<span class="font-caption-spec text-caption-spec text-outline uppercase font-medium">Concesionario o Box Oficial</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[22px] flex-shrink-0">flag_circle</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Configurator & Order Workspace -->
+<main class="w-full px-margin-mobile lg:px-margin-desktop py-space-2xl">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column: Acquisition Mode & Add-ons (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="p-space-2xs bg-primary-container text-on-primary font-label-data text-caption-spec uppercase font-bold px-2 py-0.5">MÓDULO DE ADQUISICIÓN</span>
+<span class="font-caption-spec text-caption-spec text-outline uppercase font-semibold">TIPO DE OPERACIÓN: CARRERA &amp; CIRCUITO</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-wide">
+            MODALIDAD DE COMPRA Y PROGRAMA DE ADQUISICIÓN
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+            Selecciona tu estrategia de compra: abono íntegro de chasis de competición con equipamiento premium de paddock de regalo, o plan de cuotas ajustables <span class="text-secondary font-medium">Yamaha Easy Pay</span> con Valor Futuro Garantizado para renovar tu montura cada temporada.
+          </p>
+</div>
+<!-- Acquisition Mode Tabs -->
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-wrap sm:flex-nowrap gap-space-xs bg-surface-container-lowest p-space-xs">
+<button class="flex-1 py-space-sm px-space-md text-center transition-all bg-surface-container font-label-caps text-label-caps uppercase text-on-surface-variant flex items-center justify-center gap-space-xs" id="tab-cash" onclick="switchTab('cash')">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+<span>Pago al Contado / Transferencia</span>
+</button>
+<button class="flex-1 py-space-sm px-space-md text-center transition-all bg-primary-container text-on-primary font-label-caps text-label-caps uppercase font-bold flex items-center justify-center gap-space-xs shadow-md" id="tab-finance" onclick="switchTab('finance')">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span>Financiación Yamaha Easy Pay (Simulador)</span>
+</button>
+</div>
+<!-- TAB PANEL: CASH -->
+<div class="hidden flex-col gap-space-md bg-surface-container-low p-space-lg shadow-md" id="panel-cash">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-space-sm bg-surface-container-lowest p-space-md">
+<div>
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-semibold block">Condiciones de Contado Oficial</span>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase">Abono Íntegro con Descuento Inmediato</h3>
+</div>
+<div class="text-right">
+<span class="font-caption-spec text-caption-spec text-outline uppercase block">Importe Factura Final</span>
+<span class="font-headline-md text-headline-md text-secondary-container" id="cash-price-display">11.199 €</span>
+</div>
+</div>
+<!-- Welcome Gift Promotion Banner -->
+<div class="bg-surface-container p-space-md flex flex-col md:flex-row items-center gap-space-md">
+<div class="w-full md:w-36 h-28 bg-surface-container-lowest flex-shrink-0 flex items-center justify-center relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-end paddock workshop setup with official Yamalube lubricant bottles and an anodized aluminium Eddie Store racing bike stand with Yamaha blue accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjyKsGGXqs8q1J6hFsZLPR7lgMDINLBzqLXjwm3nzEBpXr-B7GJ4ljlLYQ442YXSioqSkwo3DgWbl6yZJmnZTcOMGpld5-ocq_UFVDdkm9MqcRLXMsqykmKRTDOLQPH4zpALw5Mg3z5F8cdY85C5Dnr0IeQhrPQbaAjwH5co4qaSXmgmlbJtxcmRkhcs03GXMOpKFsx9Sec4VXVzPoXy-M1Uwp8ME1aRmWVn_VyBuHDhXMAPfrhMp5"/>
+<div class="absolute top-1 left-1 bg-secondary-container text-on-secondary font-label-data text-caption-spec font-bold px-1.5 py-0.5 uppercase">VALOR: 250 €</div>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex items-center gap-space-xs text-secondary mb-1">
+<span class="material-symbols-outlined text-[18px]">card_giftcard</span>
+<span class="font-label-caps text-label-caps uppercase">Bonus Especial Eddie Store Paddock</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase">Kit Yamalube Racing + Caballete MX Factory Pro</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-normal">
+                  Incluido gratis al completar la compra mediante transferencia bancaria inmediata o tarjeta. Incluye 4L de aceite Yamalube 4-FS 10W-40, sprays de filtro, grasa de cadena competición y caballete de aluminio ultra-ligero para paddock.
+                </p>
+</div>
+<div class="flex-shrink-0">
+<span class="font-label-data text-label-data text-secondary-container bg-surface-container-high px-space-sm py-space-xs uppercase block text-center">GRATIS INCLUIDO</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm font-label-data text-label-data text-on-surface-variant pt-space-xs">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest p-space-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span>Asignación de bastidor física en 24 horas</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest p-space-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">rocket_launch</span>
+<span>Prioridad de ensamblaje en taller de carreras</span>
+</div>
+</div>
+</div>
+<!-- TAB PANEL: FINANCE (YAMAHA EASY PAY) -->
+<div class="flex flex-col gap-space-lg bg-surface-container-low p-space-lg shadow-md" id="panel-finance">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center gap-space-sm pb-space-sm">
+<div class="flex flex-col">
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-semibold">Simulador Telemétrico en Tiempo Real</span>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase">Plan Flexible Yamaha You Easy GO</h3>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+<span class="font-label-data text-label-data text-on-surface">TIN 5.95% | TAE 6.90%</span>
+</div>
+</div>
+<!-- Simulator Matrix Interactive Controls -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg bg-surface-container-lowest p-space-md">
+<!-- Entrada Inicial Slider -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Entrada Inicial (Down Payment)</span>
+<span class="font-headline-sm text-headline-sm text-secondary-container" id="down-payment-val">2.000 €</span>
+</div>
+<input class="w-full accent-[#00e3fd] bg-surface-container cursor-pointer h-2 rounded-none" id="input-down-payment" max="6000" min="0" oninput="calculateFinance()" step="250" type="range" value="2000"/>
+<div class="flex justify-between font-caption-spec text-caption-spec text-outline">
+<span>Mín: 0 €</span>
+<span>Aconsejable: 2.500 €</span>
+<span>Máx: 6.000 €</span>
+</div>
+</div>
+<!-- Selector de Plazo Meses -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Plazo de Financiación</span>
+<div class="grid grid-cols-4 gap-space-xs">
+<button class="term-btn py-space-sm font-label-data text-label-data text-on-surface-variant bg-surface-container text-center transition-colors hover:bg-surface-bright" id="term-24" onclick="setTerm(24)" type="button">24 M</button>
+<button class="term-btn py-space-sm font-label-data text-label-data text-on-primary bg-primary-container font-bold text-center transition-colors" id="term-36" onclick="setTerm(36)" type="button">36 M</button>
+<button class="term-btn py-space-sm font-label-data text-label-data text-on-surface-variant bg-surface-container text-center transition-colors hover:bg-surface-bright" id="term-48" onclick="setTerm(48)" type="button">48 M</button>
+<button class="term-btn py-space-sm font-label-data text-label-data text-on-surface-variant bg-surface-container text-center transition-colors hover:bg-surface-bright" id="term-60" onclick="setTerm(60)" type="button">60 M</button>
+</div>
+<span class="font-caption-spec text-caption-spec text-outline">Plazo sugerido para recambio competitivo: 36 Meses</span>
+</div>
+</div>
+<!-- Real-time Quota Result Box -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md items-stretch bg-surface-container p-space-md">
+<div class="flex flex-col justify-center">
+<span class="font-caption-spec text-caption-spec text-outline uppercase font-semibold">Cuota Mensual Estimada</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-xl text-headline-xl text-secondary" id="monthly-quota-val">189,45 €</span>
+<span class="font-label-data text-label-data text-on-surface-variant">/ mes</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-secondary-container mt-1">✓ Incluye Seguro de Compra Protegida</span>
+</div>
+<div class="flex flex-col justify-center bg-surface-container-low p-space-sm">
+<span class="font-caption-spec text-caption-spec text-outline uppercase font-semibold">Capital a Financiar</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1" id="financed-capital-val">9.199,00 €</span>
+<span class="font-caption-spec text-caption-spec text-outline mt-1">Apertura: 0,00 € (0% Promoción Eddie)</span>
+</div>
+<div class="flex flex-col justify-center bg-surface-container-low p-space-sm">
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-semibold">Valor Futuro Garantizado (VFG)</span>
+<span class="font-headline-sm text-headline-sm text-secondary-container mt-1" id="vfg-val">4.890,00 €</span>
+<span class="font-caption-spec text-caption-spec text-on-surface-variant mt-1">Última cuota recompra garantizada</span>
+</div>
+</div>
+<!-- VFG Explanation Protocol -->
+<div class="bg-surface-container-lowest p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[18px]">autorenew</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wide">Protocolo Valor Futuro Garantizado al Mes <span id="vfg-month">36</span>:</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm pt-space-xs font-body-sm text-body-sm">
+<div class="flex flex-col bg-surface-container-low p-space-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase">1. Renueva tu YZ</span>
+<p class="text-on-surface-variant mt-1">Entrega tu YZ450F 2025 y estrena el modelo 2027/2028 utilizando la plusvalía acumulada.</p>
+</div>
+<div class="flex flex-col bg-surface-container-low p-space-sm">
+<span class="font-label-caps text-label-caps text-on-surface uppercase">2. Quédatela</span>
+<p class="text-on-surface-variant mt-1">Abona la última cuota final garantizada o refinánciala en cómodos plazos adicionales.</p>
+</div>
+<div class="flex flex-col bg-surface-container-low p-space-sm">
+<span class="font-label-caps text-label-caps text-outline uppercase">3. Devuélvela</span>
+<p class="text-on-surface-variant mt-1">Cancela el contrato devolviendo la motocicleta a Eddie Store sin compromisos residuales.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Protection Packages and Race Services -->
+<div class="flex flex-col gap-space-md pt-space-sm">
+<div class="flex flex-col gap-space-2xs">
+<span class="font-caption-spec text-caption-spec text-secondary uppercase tracking-widest font-semibold">// RACE ENHANCEMENTS &amp; COMPREHENSIVE CARE</span>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase">PAQUETES DE PROTECCIÓN Y SERVICIOS DE PADDOCK</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Configura coberturas técnicas de taller y paquetes de asistencia pre-carrera certificados por mecánicos de fábrica.</p>
+</div>
+<div class="grid grid-cols-1 gap-space-md">
+<!-- Add-on 1: Seguro Off-Road -->
+<label class="flex flex-col md:flex-row items-start md:items-center justify-between p-space-md bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm">
+<div class="flex items-start gap-space-md flex-1">
+<div class="pt-0.5">
+<input class="w-5 h-5 bg-surface-container-lowest text-secondary-container rounded-none cursor-pointer focus:ring-0" id="addon-insurance" onchange="toggleAddon('insurance', 19, true)" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase">Seguro Off-Road &amp; Accidentes en Circuito</span>
+<span class="px-2 py-0.5 bg-surface-container text-secondary font-label-data text-caption-spec uppercase font-semibold">Cobertura FIM / Pista</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Póliza de responsabilidad civil en pistas federadas, daños a terceros en paddock y rescate médico de emergencia en circuito autorizado en toda Europa.
+                  </p>
+</div>
+</div>
+<div class="mt-space-sm md:mt-0 flex md:flex-col items-baseline md:items-end justify-between w-full md:w-auto pl-8 md:pl-0">
+<span class="font-headline-md text-headline-md text-secondary-container">+19 €<span class="font-label-data text-body-sm text-on-surface-variant">/mes</span></span>
+<span class="font-caption-spec text-caption-spec text-outline">Póliza anual prorrateada</span>
+</div>
+</label>
+<!-- Add-on 2: Pro Care 3 Años -->
+<label class="flex flex-col md:flex-row items-start md:items-center justify-between p-space-md bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm">
+<div class="flex items-start gap-space-md flex-1">
+<div class="pt-0.5">
+<input class="w-5 h-5 bg-surface-container-lowest text-secondary-container rounded-none cursor-pointer focus:ring-0" id="addon-care" onchange="toggleAddon('care', 390, false)" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase">Extensión Eddie Store Pro Care (3 Años)</span>
+<span class="px-2 py-0.5 bg-primary-container text-on-primary font-label-data text-caption-spec uppercase font-bold">Recomendado Taller</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Revisiones de pistón/biela, cambio de retenes y aceite KYB de horquilla y monoamortiguador cada 25 horas. Mano de obra de competición 100% bonificada.
+                  </p>
+</div>
+</div>
+<div class="mt-space-sm md:mt-0 flex md:flex-col items-baseline md:items-end justify-between w-full md:w-auto pl-8 md:pl-0">
+<span class="font-headline-md text-headline-md text-secondary-container">+390 €</span>
+<span class="font-caption-spec text-caption-spec text-outline">Pago único / Incluido en cuota</span>
+</div>
+</label>
+<!-- Add-on 3: Race Ready Tuning -->
+<label class="flex flex-col md:flex-row items-start md:items-center justify-between p-space-md bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer shadow-sm">
+<div class="flex items-start gap-space-md flex-1">
+<div class="pt-0.5">
+<input checked="" class="w-5 h-5 bg-surface-container-lowest text-secondary-container rounded-none cursor-pointer focus:ring-0" id="addon-ready" onchange="toggleAddon('ready', 0, false)" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase">Kit de Puesta en Marcha 'Race Ready'</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary font-label-data text-caption-spec uppercase font-bold">Pack Gratuito</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Carga inicial Yamalube Factory Racing, ajuste y tarado de sag de suspensión personalizado al peso exacto del piloto, reglaje de válvulas y primera inspección a las 5h de rodaje.
+                  </p>
+</div>
+</div>
+<div class="mt-space-sm md:mt-0 flex md:flex-col items-baseline md:items-end justify-between w-full md:w-auto pl-8 md:pl-0">
+<span class="font-headline-md text-headline-md text-on-surface">INCLUIDO</span>
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-semibold">Valor 180 € GRATIS</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Trust Badges & Immediate Pre-Approval Info -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="bg-surface-container-low p-space-md flex items-center gap-space-md">
+<span class="material-symbols-outlined text-secondary text-[36px] flex-shrink-0">workspace_premium</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface uppercase">Concesionario Oficial Yamaha Certificado</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Garantía oficial directa de Yamaha Motor Europe con cobertura en toda la red de concesionarios.</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md flex items-center gap-space-md">
+<span class="material-symbols-outlined text-secondary-container text-[36px] flex-shrink-0">timer</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface uppercase">Scoring 100% Online en 5 Minutos</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Respuesta inmediata con firma digital y vinculación bancaria automática sin papeleos.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sticky Vehicle Order Summary (4 Cols) -->
+<aside class="lg:col-span-4 lg:sticky lg:top-24 flex flex-col gap-space-md">
+<div class="bg-surface-container-low shadow-xl p-space-lg flex flex-col gap-space-md relative overflow-hidden">
+<!-- Decorative subtle angle bar -->
+<div class="absolute top-0 right-0 w-32 h-1 bg-gradient-to-l from-secondary-container to-transparent"></div>
+<!-- Motorcycle Header Card -->
+<div class="flex flex-col">
+<div class="flex items-center justify-between font-label-data text-caption-spec text-secondary mb-1">
+<span>MOTORCROSS MY2025</span>
+<span class="bg-surface-container-high px-2 py-0.5 uppercase text-on-surface">CHASIS #882</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">
+              YAMAHA YZ450F 2025
+            </h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Icon Blue Factory Racing // Titanium Spec</span>
+</div>
+<!-- Motorcycle Imagery Thumbnail -->
+<div class="relative w-full h-44 bg-surface-container-lowest overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Side profile high-detail studio photo of a Yamaha YZ450F 2025 motocross motorcycle in iconic racing blue with GYTR titanium exhaust system against a sleek dark carbon studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGq1T3leHBhSIkot8vwAZCkYnHtDu_WXTXF30VzXDHqE-Kk9hCRTSfITfU-vBb8IDM7J2smzu9LqtjtHxrDyp1UXbZIKe5GBu9hWODouc_hTc178R-PUe2FVW-TteIQEd88NT4GRgZiKmqaroDZ04cvqelD8x6dwcRCQwTdW7UaE9ITbjI-criEcw9oEX58GatT3Lz7gtUP-Q1UrkNR19Mz8Dp2689RZnGfKrnVU9RallOKrRtl-V0"/>
+<div class="absolute bottom-2 left-2 bg-surface-container-lowest/80 backdrop-blur-sm px-2 py-1 flex items-center gap-1 font-label-data text-caption-spec text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+<span>LISTA PARA ENTREGA INMEDIATA</span>
+</div>
+</div>
+<!-- Spec Matrix Data Strip -->
+<div class="grid grid-cols-3 gap-space-xs bg-surface-container-lowest p-space-xs text-center">
+<div class="flex flex-col py-1">
+<span class="font-caption-spec text-caption-spec text-outline uppercase">Cilindrada</span>
+<span class="font-label-data text-label-data text-on-surface font-bold">450 cc</span>
+</div>
+<div class="flex flex-col py-1 bg-surface-container-low">
+<span class="font-caption-spec text-caption-spec text-outline uppercase">Peso Lleno</span>
+<span class="font-label-data text-label-data text-on-surface font-bold">109 kg</span>
+</div>
+<div class="flex flex-col py-1">
+<span class="font-caption-spec text-caption-spec text-outline uppercase">Susp. KYB</span>
+<span class="font-label-data text-label-data text-on-surface font-bold">310 mm</span>
+</div>
+</div>
+<!-- Order Breakdown -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Desglose de Facturación</span>
+<div class="flex justify-between items-center font-body-sm text-body-sm py-1">
+<span class="text-on-surface">Subtotal Moto YZ450F 2025</span>
+<span class="font-label-data text-on-surface">10.350,00 €</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm py-1">
+<span class="text-on-surface">Pack GYTR Escape Completo Titanio</span>
+<span class="font-label-data text-on-surface">1.299,00 €</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm py-1 text-secondary-container">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">local_offer</span>
+<span>Descuento Concesionario Eddie Store</span>
+</span>
+<span class="font-label-data font-bold">- 450,00 €</span>
+</div>
+<div class="hidden justify-between items-center font-body-sm text-body-sm py-1 text-on-surface-variant" id="addon-care-row">
+<span>Extensión Eddie Pro Care (3 Años)</span>
+<span class="font-label-data">+ 390,00 €</span>
+</div>
+<div class="hidden justify-between items-center font-body-sm text-body-sm py-1 text-on-surface-variant" id="addon-insurance-row">
+<span>Seguro Off-Road Circuito (Mensual)</span>
+<span class="font-label-data">+ 19,00 €/m</span>
+</div>
+<div class="pt-space-sm flex justify-between items-baseline bg-surface-container-lowest p-space-sm mt-space-xs">
+<div class="flex flex-col">
+<span class="font-caption-spec text-caption-spec text-outline uppercase">Total Operación IVA Inc.</span>
+<span class="font-headline-md text-headline-md text-on-surface" id="summary-total-price">11.199,00 €</span>
+</div>
+<div class="text-right" id="summary-finance-preview">
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-semibold block">O desde:</span>
+<span class="font-headline-sm text-headline-sm text-secondary-container" id="summary-monthly-val">189,45 €/m</span>
+</div>
+</div>
+</div>
+<!-- Primary CTA Button -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-md bg-primary-container hover:bg-secondary-container text-on-primary hover:text-on-secondary font-label-caps text-label-caps uppercase font-bold tracking-wider transition-all flex items-center justify-center gap-space-sm shadow-xl" id="btn-continuar-checkout" type="button">
+<span>Continuar a Datos de Entrega y Pago</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<span class="font-caption-spec text-caption-spec text-center text-outline">
+              Sin cargos automáticos en este paso. Validación previa del bastidor en stock.
+            </span>
+</div>
+<!-- Security & Advisor Mini-Card -->
+<div class="flex items-center gap-space-sm p-space-xs bg-surface-container-lowest">
+<div class="w-9 h-9 rounded bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-data text-label-data text-on-surface uppercase truncate">¿Dudas con el plan?</span>
+<a class="font-caption-spec text-caption-spec text-secondary hover:underline truncate" href="tel:+34934890250">Hablar con Marc (Jefe de Ventas MX)</a>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Interactive Simulator & State Controller Script -->
+<script>
+    let basePrice = 11199;
+    let currentDownPayment = 2000;
+    let currentTerm = 36;
+    let careSelected = false;
+    let insuranceSelected = false;
+    let currentMode = 'finance';
+
+    function switchTab(mode) {
+      currentMode = mode;
+      const tabCash = document.getElementById('tab-cash');
+      const tabFinance = document.getElementById('tab-finance');
+      const panelCash = document.getElementById('panel-cash');
+      const panelFinance = document.getElementById('panel-finance');
+      const previewBlock = document.getElementById('summary-finance-preview');
+
+      if (mode === 'cash') {
+        tabCash.className = 'flex-1 py-space-sm px-space-md text-center transition-all bg-primary-container text-on-primary font-label-caps text-label-caps uppercase font-bold flex items-center justify-center gap-space-xs shadow-md';
+        tabFinance.className = 'flex-1 py-space-sm px-space-md text-center transition-all bg-surface-container font-label-caps text-label-caps uppercase text-on-surface-variant flex items-center justify-center gap-space-xs hover:bg-surface-bright';
+        panelCash.classList.remove('hidden');
+        panelCash.classList.add('flex');
+        panelFinance.classList.add('hidden');
+        panelFinance.classList.remove('flex');
+        if (previewBlock) previewBlock.classList.add('opacity-30');
+      } else {
+        tabFinance.className = 'flex-1 py-space-sm px-space-md text-center transition-all bg-primary-container text-on-primary font-label-caps text-label-caps uppercase font-bold flex items-center justify-center gap-space-xs shadow-md';
+        tabCash.className = 'flex-1 py-space-sm px-space-md text-center transition-all bg-surface-container font-label-caps text-label-caps uppercase text-on-surface-variant flex items-center justify-center gap-space-xs hover:bg-surface-bright';
+        panelFinance.classList.remove('hidden');
+        panelFinance.classList.add('flex');
+        panelCash.classList.add('hidden');
+        panelCash.classList.remove('flex');
+        if (previewBlock) previewBlock.classList.remove('opacity-30');
+      }
+      calculateFinance();
+    }
+
+    function setTerm(months) {
+      currentTerm = months;
+      [24, 36, 48, 60].forEach(term => {
+        const btn = document.getElementById('term-' + term);
+        if (term === months) {
+          btn.className = 'term-btn py-space-sm font-label-data text-label-data text-on-primary bg-primary-container font-bold text-center transition-colors';
+        } else {
+          btn.className = 'term-btn py-space-sm font-label-data text-label-data text-on-surface-variant bg-surface-container text-center transition-colors hover:bg-surface-bright';
+        }
+      });
+      const vfgMonthDisplay = document.getElementById('vfg-month');
+      if (vfgMonthDisplay) vfgMonthDisplay.innerText = months;
+      calculateFinance();
+    }
+
+    function toggleAddon(type, cost, isMonthly) {
+      if (type === 'care') {
+        careSelected = document.getElementById('addon-care').checked;
+        const row = document.getElementById('addon-care-row');
+        if (careSelected) {
+          row.classList.remove('hidden');
+          row.classList.add('flex');
+        } else {
+          row.classList.add('hidden');
+          row.classList.remove('flex');
+        }
+      } else if (type === 'insurance') {
+        insuranceSelected = document.getElementById('addon-insurance').checked;
+        const row = document.getElementById('addon-insurance-row');
+        if (insuranceSelected) {
+          row.classList.remove('hidden');
+          row.classList.add('flex');
+        } else {
+          row.classList.add('hidden');
+          row.classList.remove('flex');
+        }
+      }
+      calculateFinance();
+    }
+
+    function calculateFinance() {
+      const slider = document.getElementById('input-down-payment');
+      if (slider) currentDownPayment = parseInt(slider.value, 10);
+      
+      const downDisplay = document.getElementById('down-payment-val');
+      if (downDisplay) downDisplay.innerText = currentDownPayment.toLocaleString('es-ES') + ' €';
+
+      let computedTotal = basePrice + (careSelected ? 390 : 0);
+      const summaryTotalDisplay = document.getElementById('summary-total-price');
+      const cashPriceDisplay = document.getElementById('cash-price-display');
+      if (summaryTotalDisplay) summaryTotalDisplay.innerText = computedTotal.toLocaleString('es-ES') + ',00 €';
+      if (cashPriceDisplay) cashPriceDisplay.innerText = computedTotal.toLocaleString('es-ES') + ' €';
+
+      let principal = Math.max(computedTotal - currentDownPayment, 1000);
+      const financedCapitalDisplay = document.getElementById('financed-capital-val');
+      if (financedCapitalDisplay) financedCapitalDisplay.innerText = principal.toLocaleString('es-ES') + ',00 €';
+
+      // VFG calculation logic (Residual value higher for shorter terms)
+      let vfgRatio = 0.50;
+      if (currentTerm === 24) vfgRatio = 0.55;
+      if (currentTerm === 36) vfgRatio = 0.44;
+      if (currentTerm === 48) vfgRatio = 0.35;
+      if (currentTerm === 60) vfgRatio = 0.28;
+
+      let vfgAmount = Math.round(basePrice * vfgRatio);
+      const vfgDisplay = document.getElementById('vfg-val');
+      if (vfgDisplay) vfgDisplay.innerText = vfgAmount.toLocaleString('es-ES') + ',00 €';
+
+      // Standard Balloon monthly formula
+      const annualRate = 0.0595;
+      const monthlyRate = annualRate / 12;
+      const amortizedAmount = principal - (vfgAmount / Math.pow(1 + monthlyRate, currentTerm));
+      let baseQuota = (amortizedAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -currentTerm));
+      
+      if (insuranceSelected) {
+        baseQuota += 19;
+      }
+
+      const quotaDisplay = document.getElementById('monthly-quota-val');
+      const summaryMonthlyDisplay = document.getElementById('summary-monthly-val');
+      const formattedQuota = baseQuota.toFixed(2).replace('.', ',') + ' €';
+
+      if (quotaDisplay) quotaDisplay.innerText = formattedQuota;
+      if (summaryMonthlyDisplay) summaryMonthlyDisplay.innerText = formattedQuota + '/m';
+    }
+
+    // Init calculation on load
+    document.addEventListener('DOMContentLoaded', () => {
+      calculateFinance();
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest text-on-surface-variant pt-space-3xl pb-space-xl"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl pb-space-2xl"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><div class="p-space-xs bg-primary-container text-on-primary rounded font-label-caps text-caption-spec font-bold uppercase tracking-widest">Official Dealer</div><span class="font-caption-spec text-caption-spec text-secondary uppercase font-medium">Racing Unit</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface uppercase">EDDIE STORE</span><p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">Concesionario oficial Yamaha Motocross y Paddock Center certificado de alta competición. Distribución de motocicletas de fábrica, piezas GYTR Racing y servicio técnico oficial en circuito.</p></div><div class="flex items-center gap-space-xs font-label-data text-label-data text-secondary-container"><span class="material-symbols-outlined text-[16px]">speed</span><span>Yamaha Factory Certified Workshop</span></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Concesionario &amp; Showroom</h4><div class="flex flex-col gap-space-xs font-body-sm text-body-sm"><div class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px] flex-shrink-0 mt-0.5">location_on</span><span class="text-on-surface">Polígono MotorSport Circuit, Vial B-09, Box 14, 08160 Barcelona, España</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">call</span><span class="font-label-data text-label-data text-on-surface">+34 934 890 250</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">mail</span><span class="font-label-data text-label-data text-on-surface">pro-racing@eddiestore.es</span></div></div><div class="mt-space-sm pt-space-sm"><span class="font-caption-spec text-caption-spec uppercase text-outline block mb-1">Horario Paddock &amp; Box</span><span class="font-label-data text-label-data text-on-surface block">L-V: 08:30 - 20:00 | S: 09:00 - 14:00</span></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Taller &amp; Cita Previa</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Puesta a punto de suspensiones KYB, mapeo de ECU GYTR, y revisiones pre-carrera oficiales.</p><a class="inline-flex items-center justify-between px-space-md py-space-sm rounded bg-surface-container-high hover:bg-surface-bright text-on-surface transition-all font-label-caps text-label-caps uppercase" data-path="concesionario-y-taller" href="#"><span class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">build</span> Solicitar Cita Box</span><span class="material-symbols-outlined text-[16px]">chevron_right</span></a><div class="flex flex-col gap-1 mt-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="simulador-financiacion" href="#">Planes de Financiación Yamaha You Easy GO</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="accesorios-y-gytr" href="#">Catálogo Racing GYTR 2025</a></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Boletín Técnico Paddock</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Recibe avisos de asignaciones de cupos YZ 2025, reglajes de circuito y kits GYTR exclusivos.</p><div class="flex flex-col gap-space-xs"><div class="relative flex items-center bg-surface-container rounded"><input class="w-full px-space-md py-space-sm bg-transparent text-on-surface font-body-sm text-body-sm placeholder-outline focus:outline-none" placeholder="Introduce tu correo de piloto" type="email"/><button class="px-space-md py-space-sm bg-primary-container hover:bg-secondary-container text-on-primary hover:text-on-secondary font-label-caps text-label-caps uppercase transition-colors rounded-r flex items-center"><span class="material-symbols-outlined text-[16px]">send</span></button></div><span class="font-caption-spec text-caption-spec text-outline">Al suscribirte aceptas las comunicaciones de competición de Eddie Store.</span></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-md font-label-data text-caption-spec text-outline"><span class="text-on-surface-variant">© 2025 Eddie Store Motocross S.L. Concesionario Oficial Yamaha Motor Europe N.V.</span></div><div class="flex items-center gap-space-lg font-caption-spec text-caption-spec text-on-surface-variant"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[16px]">security</span> SSL 256-BIT RACING PAY</span><span class="text-outline-variant">|</span><span>VISA / MASTERCARD RACING PASS</span><span class="text-outline-variant">|</span><span>YAMAHA FINANCE GUARANTEE</span></div></div></div></footer><script src="nav.js"></script></body></html>

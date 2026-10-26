@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "background": "#0f131c",
+                "tertiary-fixed-dim": "#ffb3b3",
+                "on-secondary": "#00363d",
+                "on-secondary-fixed": "#001f24",
+                "on-error": "#690005",
+                "on-tertiary-fixed": "#400009",
+                "surface-dim": "#0f131c",
+                "tertiary-container": "#c0002e",
+                "tertiary": "#ffb3b3",
+                "surface": "#0f131c",
+                "error": "#ffb4ab",
+                "secondary": "#bdf4ff",
+                "surface-container-lowest": "#0a0e16",
+                "on-primary-container": "#d1d7ff",
+                "on-secondary-container": "#00616d",
+                "surface-container-low": "#181c24",
+                "on-background": "#dfe2ee",
+                "on-primary-fixed-variant": "#0036bb",
+                "surface-container-highest": "#31353e",
+                "secondary-fixed-dim": "#00daf3",
+                "inverse-primary": "#0d4aef",
+                "surface-bright": "#353942",
+                "on-secondary-fixed-variant": "#004f58",
+                "primary-container": "#0e4bef",
+                "secondary-container": "#00e3fd",
+                "on-tertiary": "#680014",
+                "outline-variant": "#434656",
+                "on-surface": "#dfe2ee",
+                "on-surface-variant": "#c4c5d9",
+                "primary-fixed": "#dde1ff",
+                "error-container": "#93000a",
+                "surface-tint": "#b8c4ff",
+                "surface-container": "#1c2028",
+                "tertiary-fixed": "#ffdad9",
+                "on-tertiary-container": "#ffcecd",
+                "inverse-surface": "#dfe2ee",
+                "on-error-container": "#ffdad6",
+                "secondary-fixed": "#9cf0ff",
+                "primary-fixed-dim": "#b8c4ff",
+                "on-primary": "#002486",
+                "primary": "#b8c4ff",
+                "outline": "#8e90a2",
+                "surface-variant": "#31353e",
+                "on-primary-fixed": "#001454",
+                "inverse-on-surface": "#2c3039",
+                "surface-container-high": "#262a33",
+                "on-tertiary-fixed-variant": "#920021"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter-desktop": "1.5rem",
+                "margin-mobile": "1rem",
+                "space-3xl": "4.5rem",
+                "margin-tablet": "2rem",
+                "space-2xs": "0.125rem",
+                "space-xl": "2rem",
+                "space-xs": "0.25rem",
+                "space-lg": "1.5rem",
+                "space-4xl": "6rem",
+                "space-md": "1rem",
+                "margin-desktop": "3.5rem",
+                "gutter-mobile": "1rem",
+                "space-sm": "0.5rem",
+                "space-2xl": "3rem"
+        },
+        "fontFamily": {
+                "display-hero-mobile": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "body-sm": [
+                        "Space Grotesk", "sans-serif"
+                ],
+                "headline-xl-mobile": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "body-lg": [
+                        "Space Grotesk", "sans-serif"
+                ],
+                "label-caps": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "headline-xl": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "headline-lg": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "headline-md": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "label-data": [
+                        "JetBrains Mono", "monospace"
+                ],
+                "caption-spec": [
+                        "JetBrains Mono", "monospace"
+                ],
+                "display-hero": [
+                        "Barlow Condensed", "sans-serif"
+                ],
+                "body-md": [
+                        "Space Grotesk", "sans-serif"
+                ],
+                "headline-sm": [
+                        "Barlow Condensed", "sans-serif"
+                ]
+        },
+        "fontSize": {
+                "display-hero-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "50px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-xl-mobile": [
+                        "36px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "14px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.12em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-xl": [
+                        "56px",
+                        {
+                                "lineHeight": "58px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "38px",
+                        {
+                                "lineHeight": "42px",
+                                "letterSpacing": "0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "26px",
+                        {
+                                "lineHeight": "30px",
+                                "letterSpacing": "0.04em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-data": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.08em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "caption-spec": [
+                        "10px",
+                        {
+                                "lineHeight": "14px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-hero": [
+                        "84px",
+                        {
+                                "lineHeight": "84px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-md": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "20px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }</script></head><body class="bg-background font-body-md text-body-md text-on-background min-h-screen selection:bg-secondary-container selection:text-on-secondary"><header class="fixed top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.6)]"><div class="w-full bg-surface-container-lowest py-space-xs px-margin-mobile lg:px-margin-desktop"><div class="max-w-7xl mx-auto flex items-center justify-between font-label-data text-label-data"><div class="flex items-center gap-space-sm text-secondary tracking-wider overflow-hidden text-ellipsis whitespace-nowrap"><span class="flex h-2 w-2 rounded-full bg-secondary-container animate-pulse"></span><span class="truncate font-medium">🏁 NUEVA GAMA YAMAHA YZ 2025 YA DISPONIBLE | ENTREGA INMEDIATA EN PISTA O CONCESIONARIO | FINANCIACIÓN 0% TAE</span></div><div class="hidden md:flex items-center gap-space-lg text-on-surface-variant"><span class="flex items-center gap-space-xs text-on-surface"><span class="material-symbols-outlined text-[14px] text-secondary">verified</span> Official Yamaha Pro-Dealer #2841</span><span class="text-outline-variant">|</span><span class="hover:text-secondary cursor-pointer transition-colors">Paddock Delivery Service</span></div></div></div><div class="h-20 max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="Eddie Store Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSQ1bvEO4eJaWhj_NX4vrRyXVAJfsLdM7WUVhiTuMZMdQD8AoQrX1sgIEDz4x5CleOjOmNjh2fWACNmJQhckVm-v1p3JFlS64z5Dw59r-RTJceKM3llC8iCD_vshfB5D7l2hKrM-2xT_UB4uYS86srALEldn5iw_Y9UzYrlM7CyvXeC4IghsETMKjKsQlV-hEEFBOLDrLuabkhY75GFOrVlOz67Xy3u475xLhCp3KA6Xck47JnpjRK"/><div class="flex flex-col leading-none"><span class="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface">EDDIE STORE</span><span class="font-caption-spec text-caption-spec tracking-widest uppercase text-secondary font-bold">Yamaha Racing Department</span></div></div><div class="hidden xl:flex items-center flex-1 max-w-md mx-space-lg"><div class="relative w-full flex items-center bg-surface-container-low px-space-md py-space-xs rounded focus-within:bg-surface-container"><span class="material-symbols-outlined text-outline text-[18px] mr-space-sm">search</span><input class="bg-transparent w-full text-on-surface font-body-sm text-body-sm placeholder-outline focus:outline-none" placeholder="Buscar bastidor, modelo YZ, recambio GYTR..." type="text"/><div class="flex items-center gap-1 font-caption-spec text-caption-spec bg-surface-container-highest text-on-surface-variant px-1.5 py-0.5 rounded"><span class="text-[9px]">⌘</span><span>K</span></div></div></div><div class="flex items-center gap-space-sm sm:gap-space-md flex-shrink-0"><a class="hidden lg:flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high hover:bg-surface-bright transition-all" data-path="concesionario-y-taller" href="#"><span class="material-symbols-outlined text-secondary text-[16px]">pin_drop</span><span class="font-label-data text-label-data text-on-surface uppercase">Concesionario</span></a><a class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high hover:bg-surface-bright transition-all" data-path="gama-yz-motos" href="#"><span class="material-symbols-outlined text-secondary text-[16px]">compare_arrows</span><span class="font-label-data text-label-data text-on-surface uppercase">Comparar</span></a><a class="relative flex items-center justify-center p-space-xs rounded bg-surface-container-high hover:bg-surface-bright text-on-surface transition-colors" data-path="carrito-de-compra" href="#"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span class="absolute -top-1.5 -right-1.5 bg-primary-container text-on-primary font-label-data text-caption-spec font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center">1</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div><div class="w-full bg-surface-container-lowest/90"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop"><nav class="flex items-center gap-space-xs md:gap-space-sm overflow-x-auto py-space-xs scrollbar-none" data-active-classes="text-secondary bg-surface-container font-bold"><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="gama-yz-motos" href="#">Gama YZ (Motos)</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="4-tiempos-yz450f-yz250f" href="#">4 Tiempos (YZ450F / YZ250F)</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="2-tiempos-yz250-yz125-yz85" href="#">2 Tiempos (YZ250 / YZ125 / YZ85)</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="cross-country-y-enduro" href="#">Cross-Country &amp; Enduro</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="accesorios-y-gytr" href="#">Accesorios &amp; GYTR</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="simulador-financiacion" href="#">Simulador Financiación</a><a class="font-label-caps text-label-caps uppercase px-space-sm py-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" data-path="concesionario-y-taller" href="#">Concesionario &amp; Taller</a></nav></div></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full">
+<!-- Telemetry Bar & Breadcrumbs -->
+<div class="w-full bg-surface-container-lowest px-margin-mobile lg:px-margin-desktop py-space-sm">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-data text-label-data text-on-surface-variant">
+<span class="text-secondary">PADDOCK ORDERS</span>
+<span>/</span>
+<span class="text-on-surface">YZ450F-MY2025</span>
+<span>/</span>
+<span class="text-secondary-container">CHASSIS RESERVATION ID: #YZ-9942</span>
+</div>
+<div class="flex items-center gap-space-md font-caption-spec text-caption-spec text-outline">
+<span class="flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-secondary animate-pulse"></span> SESIÓN CIFRADA 256-BIT</span>
+<span>ASIGNACIÓN DE BASTIDOR ACTIVA</span>
+</div>
+</div>
+</div>
+<!-- Stepper Component -->
+<section class="w-full bg-surface-container-low py-space-lg px-margin-mobile lg:px-margin-desktop">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Step 1 (Completed) -->
+<div class="flex items-center gap-space-md bg-surface-container p-space-md">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-bold tracking-widest">PASO 01 // COMPLETADO</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface truncate">CONFIGURACIÓN &amp; GYTR</span>
+</div>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex items-center gap-space-md bg-primary-container p-space-md shadow-[0_0_24px_-4px_rgba(14,75,239,0.5)]">
+<div class="w-10 h-10 bg-on-primary text-primary flex items-center justify-center flex-shrink-0 font-label-data text-label-data font-bold">
+            02
+          </div>
+<div class="flex flex-col min-w-0">
+<span class="font-caption-spec text-caption-spec text-on-primary-container uppercase font-bold tracking-widest">PASO 02 // ACTIVO</span>
+<span class="font-headline-sm text-headline-sm uppercase text-white truncate">ENTREGA &amp; PILOTO</span>
+</div>
+</div>
+<!-- Step 3 (Pending) -->
+<div class="flex items-center gap-space-md bg-surface-container-low p-space-md opacity-60">
+<div class="w-10 h-10 bg-surface-container flex items-center justify-center flex-shrink-0 font-label-data text-label-data text-outline">
+            03
+          </div>
+<div class="flex flex-col min-w-0">
+<span class="font-caption-spec text-caption-spec text-outline uppercase font-bold tracking-widest">PASO 03 // SIGUIENTE</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface-variant truncate">CONFIRMACIÓN &amp; VIN</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Checkout Workspace -->
+<section class="w-full py-space-2xl px-margin-mobile lg:px-margin-desktop">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Left Column: Pilot Data & Logistics Delivery (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-2xl">
+<!-- Section: Pilot / Owner Registration -->
+<div class="flex flex-col gap-space-md bg-surface-container p-space-lg shadow-md">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-md py-space-xs -mx-space-lg -mt-space-lg mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">sports_motorsports</span>
+<span class="font-label-caps text-label-caps uppercase text-on-surface tracking-widest">1. EXPEDIENTE DEL TITULAR Y PILOTO OFICIAL</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-secondary font-medium">REQUISITO RFME / FIM COMP</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Los datos introducidos se vincularán directamente a la factura proforma oficial, el registro del bastidor en Yamaha Motor Europe y la cartilla de mantenimiento de competición.
+          </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md mt-space-xs">
+<!-- Full Name -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-data text-caption-spec text-outline uppercase tracking-wider">Nombre Completo del Titular *</label>
+<input class="bg-surface-container-lowest text-on-surface px-space-md py-space-sm font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-high transition-colors" type="text" value="Carlos Sainz de la Vega"/>
+</div>
+<!-- ID Document -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-data text-caption-spec text-outline uppercase tracking-wider">DNI / NIE / CIF (Facturación / Bastidor) *</label>
+<input class="bg-surface-container-lowest text-on-surface px-space-md py-space-sm font-label-data text-body-sm focus:outline-none focus:bg-surface-container-high transition-colors" type="text" value="53892104-X"/>
+</div>
+<!-- Contact Phone -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-data text-caption-spec text-outline uppercase tracking-wider">Teléfono de Contacto (Cita Mecánico) *</label>
+<div class="flex">
+<span class="inline-flex items-center px-space-sm bg-surface-container-highest text-on-surface font-label-data text-caption-spec">+34</span>
+<input class="w-full bg-surface-container-lowest text-on-surface px-space-md py-space-sm font-label-data text-body-sm focus:outline-none focus:bg-surface-container-high transition-colors" type="tel" value="654 982 110"/>
+</div>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-data text-caption-spec text-outline uppercase tracking-wider">Correo Electrónico (Notificaciones de Paddock) *</label>
+<input class="bg-surface-container-lowest text-on-surface px-space-md py-space-sm font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-high transition-colors" type="email" value="carlos.racing@circuitovalle.es"/>
+</div>
+</div>
+<!-- Pilot License Note -->
+<div class="flex items-center gap-space-sm bg-surface-container-low p-space-sm mt-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+<span class="font-caption-spec text-caption-spec text-on-surface-variant">¿Dispones de Licencia RFME? Presentándola en box recibirás descuento adicional del 10% en consumibles Yamalube durante toda la temporada.</span>
+</div>
+</div>
+<!-- Section: Motorcycle Delivery Method Selector -->
+<div class="flex flex-col gap-space-md bg-surface-container p-space-lg shadow-md">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-md py-space-xs -mx-space-lg -mt-space-lg mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">local_shipping</span>
+<span class="font-label-caps text-label-caps uppercase text-on-surface tracking-widest">2. PROTOCOLO Y LOGÍSTICA DE ENTREGA</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-secondary font-medium">CADENA DE CUSTODIA EDDIE STORE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Selecciona la modalidad de recepción de la motocicleta homologada para competición.
+          </p>
+<!-- Radio Delivery Cards Stack -->
+<div class="flex flex-col gap-space-sm mt-space-xs" id="delivery-selector-group">
+<!-- Option 1 (Recommended) -->
+<label class="delivery-card relative flex flex-col md:flex-row items-start md:items-center justify-between p-space-md bg-surface-container-high cursor-pointer transition-all hover:bg-surface-bright shadow-sm" data-cost="0">
+<div class="flex items-start gap-space-md">
+<input checked="" class="mt-1 accent-primary h-4 w-4" name="delivery_method" type="radio" value="dealership"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface">Recogida en Concesionario Eddie Store</span>
+<span class="px-space-xs py-space-2xs bg-secondary-container text-on-secondary font-label-caps text-caption-spec font-bold uppercase">RECOMENDADO</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-secondary">MADRID / POLÍGONO MOTORSPORT BOX 14</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                    Incluye briefing técnico individual de 45 minutos con mecánico jefe de competición, verificación de sag dinámico, moto arrancada al 100% de fluidos Yamalube y calibración de mandos (manillar, manetas y palancas) adaptadas a tu complexión.
+                  </p>
+</div>
+</div>
+<div class="mt-space-sm md:mt-0 flex md:flex-col items-baseline md:items-end justify-between w-full md:w-auto flex-shrink-0 pl-7 md:pl-0">
+<span class="font-headline-md text-headline-md text-secondary font-bold">GRATIS</span>
+<span class="font-caption-spec text-caption-spec text-outline">Listado en 24h</span>
+</div>
+</label>
+<!-- Option 2 -->
+<label class="delivery-card relative flex flex-col md:flex-row items-start md:items-center justify-between p-space-md bg-surface-container-low cursor-pointer transition-all hover:bg-surface-high shadow-sm" data-cost="140">
+<div class="flex items-start gap-space-md">
+<input class="mt-1 accent-primary h-4 w-4" name="delivery_method" type="radio" value="shuttle"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface">Envío Técnico Especializado Puerta a Puerta</span>
+<span class="px-space-xs py-space-2xs bg-surface-container-highest text-on-surface-variant font-label-caps text-caption-spec uppercase">TRANSPORTE PADDOCK</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-outline">PENÍNSULA IBÉRICA (DOMICILIO O BOX EN CIRCUITO)</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                    Furgoneta carrozada equipada con calzos de motocross y suspensión neumática. Entrega de 48h a 72h con la máquina completamente ensamblada y precintada con seguro a todo riesgo durante el tránsito.
+                  </p>
+</div>
+</div>
+<div class="mt-space-sm md:mt-0 flex md:flex-col items-baseline md:items-end justify-between w-full md:w-auto flex-shrink-0 pl-7 md:pl-0">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">+140,00 €</span>
+<span class="font-caption-spec text-caption-spec text-outline">48-72h Tránsito</span>
+</div>
+</label>
+<!-- Option 3 -->
+<label class="delivery-card relative flex flex-col md:flex-row items-start md:items-center justify-between p-space-md bg-surface-container-low cursor-pointer transition-all hover:bg-surface-high shadow-sm" data-cost="0">
+<div class="flex items-start gap-space-md">
+<input class="mt-1 accent-primary h-4 w-4" name="delivery_method" type="radio" value="crate"/>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface">Entrega en Caja Original Factory Crate</span>
+<span class="px-space-xs py-space-2xs bg-surface-container-highest text-on-surface-variant font-label-caps text-caption-spec uppercase">TEAMS &amp; PREPARADORES</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-outline">DIRECTO DE PLANTA YAMAHA JAPÓN (DESMONTADA)</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                    Se entrega la estructura metálica de embalaje de fábrica con suspensiones en compresión de transporte, plásticos protectores y manual oficial de ensamblaje para ingenieros de equipo.
+                  </p>
+</div>
+</div>
+<div class="mt-space-sm md:mt-0 flex md:flex-col items-baseline md:items-end justify-between w-full md:w-auto flex-shrink-0 pl-7 md:pl-0">
+<span class="font-headline-md text-headline-md text-secondary font-bold">GRATIS</span>
+<span class="font-caption-spec text-caption-spec text-outline">Requiere Montaje</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Section: Secure Payment Terminals -->
+<div class="flex flex-col gap-space-md bg-surface-container p-space-lg shadow-md">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-high px-space-md py-space-xs -mx-space-lg -mt-space-lg mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps uppercase text-on-surface tracking-widest">3. MÉTODO DE LIQUIDACIÓN Y PAGO SEGURO</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-secondary font-medium">3D SECURE RACING CHECKOUT</span>
+</div>
+<!-- Payment Tabs / Options -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-xs">
+<button class="pay-tab flex flex-col items-center justify-center p-space-md bg-primary-container text-on-primary text-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">credit_card</span>
+<span class="font-label-caps text-label-caps uppercase">Tarjeta Débito/Crédito</span>
+<span class="font-caption-spec text-caption-spec opacity-80">3D Secure 2.0</span>
+</button>
+<button class="pay-tab flex flex-col items-center justify-center p-space-md bg-surface-container-low text-on-surface-variant hover:text-on-surface text-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">account_balance</span>
+<span class="font-label-caps text-label-caps uppercase">Transferencia SEPA</span>
+<span class="font-caption-spec text-caption-spec text-outline">IBAN Yamaha Escrow</span>
+</button>
+<button class="pay-tab flex flex-col items-center justify-center p-space-md bg-surface-container-low text-on-surface-variant hover:text-on-surface text-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">contactless</span>
+<span class="font-label-caps text-label-caps uppercase">Apple / Google Pay</span>
+<span class="font-caption-spec text-caption-spec text-outline">Confirmación Inmediata</span>
+</button>
+<button class="pay-tab flex flex-col items-center justify-center p-space-md bg-surface-container-low text-on-surface-variant hover:text-on-surface text-center gap-space-xs transition-colors" type="button">
+<span class="material-symbols-outlined text-[24px]">signature</span>
+<span class="font-label-caps text-label-caps uppercase">Yamaha You Easy GO</span>
+<span class="font-caption-spec text-caption-spec text-outline">Firma Contrato 0% TAE</span>
+</button>
+</div>
+<!-- Card Form Terminal Details -->
+<div class="bg-surface-container-lowest p-space-md flex flex-col gap-space-md mt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-data text-caption-spec text-secondary uppercase font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">lock</span> PASARELA DE PAGO ENCRIPTADA
+              </span>
+<div class="flex items-center gap-space-sm font-label-data text-caption-spec text-outline">
+<span>VISA</span>
+<span>MASTERCARD</span>
+<span>AMEX RACING</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-2xs md:col-span-2">
+<label class="font-label-data text-caption-spec text-outline uppercase tracking-wider">Número de Tarjeta</label>
+<div class="relative">
+<input class="w-full bg-surface-container-high text-on-surface px-space-md py-space-sm font-label-data text-body-sm focus:outline-none" placeholder="4000 1234 5678 9010" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary text-[20px]">credit_card</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-data text-caption-spec text-outline uppercase tracking-wider">Caducidad (MM/AA)</label>
+<input class="bg-surface-container-high text-on-surface px-space-md py-space-sm font-label-data text-body-sm focus:outline-none" placeholder="08/28" type="text"/>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-data text-caption-spec text-outline uppercase tracking-wider">Código CVC / CVV</label>
+<input class="bg-surface-container-high text-on-surface px-space-md py-space-sm font-label-data text-body-sm focus:outline-none" maxlength="4" placeholder="•••" type="password"/>
+</div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-caption-spec text-caption-spec">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Cargo inicial de fianza de reserva: <strong>500,00 €</strong>. El importe restante se abona en box antes de la entrega o vía financiación aprobada.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Order Summary, VIN Guarantee & CTA (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Order Invoice Summary Card -->
+<div class="bg-surface-container p-space-lg shadow-xl flex flex-col gap-space-md sticky top-24">
+<div class="flex items-center justify-between pb-space-xs bg-surface-container-high px-space-md py-space-xs -mx-space-lg -mt-space-lg">
+<span class="font-label-caps text-label-caps uppercase text-on-surface tracking-wider">DESGLOSE DE EXPEDIENTE</span>
+<span class="font-label-data text-caption-spec text-secondary">STOCK #ES-2025</span>
+</div>
+<!-- Machine Mini Spec Display -->
+<div class="flex gap-space-md items-center bg-surface-container-low p-space-sm">
+<div class="w-20 h-16 bg-surface-container-highest flex-shrink-0 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High performance side view photograph of Yamaha YZ450F 2025 motocross bike in iconic Yamaha racing blue livery with sharp carbon competition accents studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUnKCH5ZlCzHspSYAy5Q3Z9ZbwsTxDKpo55nBXGW9VTeV_t0GTueiGwsn3kZZdTvsCb2t7Eo6_Db7YNzhkNQzYhulND2neK051T1XBUPQeFwZtjDhAEsYJ_rXw11efY0P6jTNDsXhCjwB_M1qcE7l0TLjs7hPVZMmcW4jQGjXDz1H99J2-fBaP4VQBUcY02WtPOCyqA20FpGm_m2cg5ukW9Px_OOjXKbrFsuDcWpWB58JF5qupBOEf"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-caption-spec text-caption-spec text-secondary uppercase font-bold">EDICIÓN 2025 COMPETICIÓN</span>
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface truncate">Yamaha YZ450F Factory</span>
+<span class="font-label-data text-caption-spec text-on-surface-variant">450cc · Inyección Invertida</span>
+</div>
+</div>
+<!-- Line items -->
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<div class="flex justify-between items-center py-space-xs bg-surface-container-lowest px-space-sm">
+<span class="text-on-surface">Base Motocicleta YZ450F 2025</span>
+<span class="font-label-data text-label-data text-on-surface">10.699,00 €</span>
+</div>
+<div class="flex justify-between items-center py-space-xs bg-surface-container-lowest px-space-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">Escape Completo Titanio GYTR Akrapovič</span>
+<span class="font-caption-spec text-caption-spec text-secondary">Kit Pro Paddock instalado</span>
+</div>
+<span class="font-label-data text-label-data text-on-surface">1.280,00 €</span>
+</div>
+<div class="flex justify-between items-center py-space-xs bg-surface-container-lowest px-space-sm">
+<div class="flex flex-col">
+<span class="text-on-surface">Puesta a Punto "Race Ready"</span>
+<span class="font-caption-spec text-caption-spec text-secondary">Fluidos, Sag Dinámico &amp; ECU Map</span>
+</div>
+<span class="font-label-data text-label-data text-secondary">INCLUIDO (0 €)</span>
+</div>
+<div class="flex justify-between items-center py-space-xs bg-surface-container-lowest px-space-sm" id="shipping-summary-row">
+<span class="text-on-surface">Logística de Entrega (Concesionario)</span>
+<span class="font-label-data text-label-data text-secondary" id="shipping-cost-display">0,00 €</span>
+</div>
+<div class="flex justify-between items-center py-space-xs bg-surface-container-lowest px-space-sm">
+<span class="text-on-surface-variant">IVA e Impuesto Deportivo Incluidos</span>
+<span class="font-label-data text-caption-spec text-outline">21% IVA</span>
+</div>
+</div>
+<!-- Total Matrix -->
+<div class="flex flex-col gap-space-xs pt-space-sm bg-surface-container-high p-space-md">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps uppercase text-on-surface-variant">PRECIO TOTAL VEHÍCULO</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold" id="total-price-display">11.979,00 €</span>
+</div>
+<div class="flex justify-between items-baseline pt-space-xs">
+<div class="flex flex-col">
+<span class="font-label-caps text-caption-spec text-secondary uppercase font-bold tracking-wider">IMPORTE A PAGAR AHORA</span>
+<span class="font-caption-spec text-caption-spec text-outline">Bloqueo de cupo y bastidor</span>
+</div>
+<span class="font-headline-lg text-headline-lg text-secondary font-black">500,00 €</span>
+</div>
+<span class="font-caption-spec text-caption-spec text-on-surface-variant mt-1">
+              Restante al recoger en concesionario o formalizar entrega: <strong>11.479,00 €</strong> (o 219 €/mes You Easy GO).
+            </span>
+</div>
+<!-- Official Guarantee Box -->
+<div class="flex flex-col gap-space-2xs bg-surface-container-lowest p-space-md">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">GARANTÍA Y HOMOLOGACIÓN YAMAHA RACING</span>
+</div>
+<p class="font-caption-spec text-caption-spec text-on-surface-variant leading-relaxed">
+              Tu moto estará lista para rodar con número de bastidor <strong>VIN oficial asignado</strong> en menos de 2 horas tras confirmar la fianza. Se emite Certificado de Origen de Fábrica Yamaha Motor Europe y activación de garantía deportiva en red oficial Eddie Store.
+            </p>
+</div>
+<!-- CTA Primary Button -->
+<button class="w-full py-space-md px-space-lg bg-primary-container hover:bg-secondary-container text-white hover:text-on-secondary font-label-caps text-headline-sm uppercase font-bold transition-all shadow-[0_0_24px_-4px_rgba(14,75,239,0.45)] flex items-center justify-center gap-space-sm" type="button">
+<span class="material-symbols-outlined text-[24px]">lock</span>
+<span>Confirmar Reserva Oficial (500,00 €)</span>
+</button>
+<!-- Security Badges Strip -->
+<div class="flex items-center justify-between font-caption-spec text-caption-spec text-outline pt-space-xs">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary">shield</span> SSL 256-BIT</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary">task_alt</span> YAMAHA ESCROW</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-secondary">sync</span> CANCELACIÓN 14 DÍAS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Circuit Support & Paddock Concierge Banner -->
+<section class="w-full bg-surface-container-lowest py-space-xl px-margin-mobile lg:px-margin-desktop">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-lg bg-surface-container-low p-space-lg">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 bg-surface-container-high flex items-center justify-center flex-shrink-0 text-secondary">
+<span class="material-symbols-outlined text-[28px]">headset_mic</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm uppercase text-on-surface">¿Dudas con la preparación técnica o entrega en paddock?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Nuestro ingeniero jefe de boxes atiende directamente consultas sobre desarrollos de piñón/corona y presiones de mousse KYB.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<a class="px-space-md py-space-sm bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-data text-label-data uppercase transition-colors flex items-center gap-space-xs" href="tel:+34934890250">
+<span class="material-symbols-outlined text-[16px] text-secondary">call</span>
+<span>Llamar a Box: 934 890 250</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Interactive logic for delivery method selection and summary updates -->
+<script>
+    (function() {
+      const deliveryCards = document.querySelectorAll('.delivery-card');
+      const shippingDisplay = document.getElementById('shipping-cost-display');
+      const totalDisplay = document.getElementById('total-price-display');
+      const baseTotal = 11979; // 10699 + 1280
+
+      deliveryCards.forEach(card => {
+        card.addEventListener('click', function() {
+          deliveryCards.forEach(c => {
+            c.classList.remove('bg-surface-container-high');
+            c.classList.add('bg-surface-container-low');
+          });
+          this.classList.remove('bg-surface-container-low');
+          this.classList.add('bg-surface-container-high');
+
+          const cost = parseInt(this.getAttribute('data-cost') || '0', 10);
+          if (cost > 0) {
+            shippingDisplay.textContent = `+${cost},00 €`;
+            shippingDisplay.classList.remove('text-secondary');
+            shippingDisplay.classList.add('text-on-surface');
+          } else {
+            shippingDisplay.textContent = '0,00 €';
+            shippingDisplay.classList.add('text-secondary');
+            shippingDisplay.classList.remove('text-on-surface');
+          }
+
+          const calculatedTotal = baseTotal + cost;
+          totalDisplay.textContent = calculatedTotal.toLocaleString('es-ES', { minimumFractionDigits: 2 }) + ' €';
+        });
+      });
+
+      // Pay tab interactive toggle
+      const payTabs = document.querySelectorAll('.pay-tab');
+      payTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          payTabs.forEach(t => {
+            t.classList.remove('bg-primary-container', 'text-on-primary');
+            t.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          });
+          this.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          this.classList.add('bg-primary-container', 'text-on-primary');
+        });
+      });
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest text-on-surface-variant pt-space-3xl pb-space-xl"><div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl pb-space-2xl"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><div class="p-space-xs bg-primary-container text-on-primary rounded font-label-caps text-caption-spec font-bold uppercase tracking-widest">Official Dealer</div><span class="font-caption-spec text-caption-spec text-secondary uppercase font-medium">Racing Unit</span></div><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface uppercase">EDDIE STORE</span><p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">Concesionario oficial Yamaha Motocross y Paddock Center certificado de alta competición. Distribución de motocicletas de fábrica, piezas GYTR Racing y servicio técnico oficial en circuito.</p></div><div class="flex items-center gap-space-xs font-label-data text-label-data text-secondary-container"><span class="material-symbols-outlined text-[16px]">speed</span><span>Yamaha Factory Certified Workshop</span></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Concesionario &amp; Showroom</h4><div class="flex flex-col gap-space-xs font-body-sm text-body-sm"><div class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px] flex-shrink-0 mt-0.5">location_on</span><span class="text-on-surface">Polígono MotorSport Circuit, Vial B-09, Box 14, 08160 Barcelona, España</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">call</span><span class="font-label-data text-label-data text-on-surface">+34 934 890 250</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">mail</span><span class="font-label-data text-label-data text-on-surface">pro-racing@eddiestore.es</span></div></div><div class="mt-space-sm pt-space-sm"><span class="font-caption-spec text-caption-spec uppercase text-outline block mb-1">Horario Paddock &amp; Box</span><span class="font-label-data text-label-data text-on-surface block">L-V: 08:30 - 20:00 | S: 09:00 - 14:00</span></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Taller &amp; Cita Previa</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Puesta a punto de suspensiones KYB, mapeo de ECU GYTR, y revisiones pre-carrera oficiales.</p><a class="inline-flex items-center justify-between px-space-md py-space-sm rounded bg-surface-container-high hover:bg-surface-bright text-on-surface transition-all font-label-caps text-label-caps uppercase" data-path="concesionario-y-taller" href="#"><span class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px]">build</span> Solicitar Cita Box</span><span class="material-symbols-outlined text-[16px]">chevron_right</span></a><div class="flex flex-col gap-1 mt-space-xs"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="simulador-financiacion" href="#">Planes de Financiación Yamaha You Easy GO</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="accesorios-y-gytr" href="#">Catálogo Racing GYTR 2025</a></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Boletín Técnico Paddock</h4><p class="font-body-sm text-body-sm text-on-surface-variant">Recibe avisos de asignaciones de cupos YZ 2025, reglajes de circuito y kits GYTR exclusivos.</p><div class="flex flex-col gap-space-xs"><div class="relative flex items-center bg-surface-container rounded"><input class="w-full px-space-md py-space-sm bg-transparent text-on-surface font-body-sm text-body-sm placeholder-outline focus:outline-none" placeholder="Introduce tu correo de piloto" type="email"/><button class="px-space-md py-space-sm bg-primary-container hover:bg-secondary-container text-on-primary hover:text-on-secondary font-label-caps text-label-caps uppercase transition-colors rounded-r flex items-center"><span class="material-symbols-outlined text-[16px]">send</span></button></div><span class="font-caption-spec text-caption-spec text-outline">Al suscribirte aceptas las comunicaciones de competición de Eddie Store.</span></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-md font-label-data text-caption-spec text-outline"><span class="text-on-surface-variant">© 2025 Eddie Store Motocross S.L. Concesionario Oficial Yamaha Motor Europe N.V.</span></div><div class="flex items-center gap-space-lg font-caption-spec text-caption-spec text-on-surface-variant"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[16px]">security</span> SSL 256-BIT RACING PAY</span><span class="text-outline-variant">|</span><span>VISA / MASTERCARD RACING PASS</span><span class="text-outline-variant">|</span><span>YAMAHA FINANCE GUARANTEE</span></div></div></div></footer></body></html>

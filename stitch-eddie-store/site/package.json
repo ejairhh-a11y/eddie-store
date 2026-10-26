@@ -1,0 +1,10 @@
+{
+  "name": "eddie-store-yamaha-motocross",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Eddie Store Yamaha Motocross - static site (Stitch-generated pages)",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
