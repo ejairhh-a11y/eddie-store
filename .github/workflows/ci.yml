@@ -93,6 +93,7 @@ jobs:
           echo "### Deploy: $url" >> "$GITHUB_STEP_SUMMARY"
       - name: Smoke test GET /api/health
         run: |
-          body=$(vercel curl /api/health --deployment "${{ steps.deploy.outputs.url }}" --yes --token "$VERCEL_TOKEN")
+          # Las opciones de Vercel van antes de la ruta: lo que va después se le pasa a curl.
+          body=$(vercel --token "$VERCEL_TOKEN" curl --deployment "${{ steps.deploy.outputs.url }}" --yes /api/health)
           echo "$body"
           echo "$body" | grep -q '"status":"ok"'
