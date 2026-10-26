@@ -58,3 +58,41 @@ jobs:
           name: playwright-report
           path: playwright-report
           retention-days: 7
+
+  # Deploy a Vercel desde el pipeline, solo si los tests pasan (ADR 0003).
+  # PR → Preview · push a main → Production. El build corre en Vercel, donde están las variables
+  # de Neon (son Sensitive y no se pueden descargar al runner).
+  deploy:
+    name: Deploy (${{ github.event_name == 'push' && 'Production' || 'Preview' }})
+    needs: [checks, e2e]
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'push' && 'production' || 'preview' }}
+    concurrency:
+      group: deploy-${{ github.event_name == 'push' && 'production' || github.ref }}
+      cancel-in-progress: false
+    env:
+      VERCEL_ORG_ID: team_nOpXVfsfEdmLX13F9IgJvxdu
+      VERCEL_PROJECT_ID: prj_o7L5gjEXNlQjbtqsBLOfOEpjXtHV
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --global vercel@62.0.0
+      - name: Deploy
+        id: deploy
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            url=$(vercel deploy --prod --yes --token "$VERCEL_TOKEN")
+          else
+            url=$(vercel deploy --yes --token "$VERCEL_TOKEN")
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "### Deploy: $url" >> "$GITHUB_STEP_SUMMARY"
+      - name: Smoke test GET /api/health
+        run: |
+          body=$(vercel curl /api/health --deployment "${{ steps.deploy.outputs.url }}" --yes --token "$VERCEL_TOKEN")
+          echo "$body"
+          echo "$body" | grep -q '"status":"ok"'

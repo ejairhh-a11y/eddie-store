@@ -2,7 +2,8 @@
 
 ## Estado
 
-Aceptado (ajustado tras la revisión adversarial: hallazgos C2, A2 y A3)
+Aceptado (ajustado tras la revisión adversarial: hallazgos C2, A2 y A3; y el 2026-10-26: el
+deploy lo dispara GitHub Actions, no la integración Git de Vercel)
 
 ## Contexto
 
@@ -27,10 +28,17 @@ anterior.
   - Local: `.env.local` apuntando a una rama `dev` de Neon.
 - **Migraciones y seed:** se rigen por el protocolo de ADR 0016. Migran en el build, con
   `DATABASE_URL_UNPOOLED`.
-- **Protección de los Preview:** se mantiene Vercel Authentication activada. Los smoke tests
-  automáticos entran con *Protection Bypass for Automation* (secreto
-  `VERCEL_AUTOMATION_BYPASS_SECRET`, cabecera `x-vercel-protection-bypass`). El E2E principal no
-  depende del Preview (ADR 0013).
+- **Quién dispara el deploy:** **GitHub Actions**, con la CLI de Vercel y un token
+  (`VERCEL_TOKEN`, secreto del repo). No se usa la integración Git de Vercel. El job `deploy` corre
+  solo si pasan los checks y el E2E:
+  - en cada PR → `vercel deploy` (Preview);
+  - en cada push a `main` → `vercel deploy --prod` (Production).
+
+  En los dos casos el build se hace **en Vercel** (no `--prebuilt`), porque las variables de Neon
+  son *Sensitive* y no se pueden descargar al runner.
+- **Protección de los Preview:** se mantiene Vercel Authentication activada. El smoke test de
+  `GET /api/health` usa `vercel curl` con el mismo token, que atraviesa la protección sin necesitar
+  un secreto de bypass aparte. El E2E principal no depende del Preview (ADR 0013).
 
 ## Alternativas consideradas
 
@@ -39,11 +47,22 @@ anterior.
   las ramas automáticas por preview, que permiten probar migraciones sin tocar producción.
 - **Render (app + Postgres propio)**: todo en un solo proveedor. Se descartó porque deja de usar
   Neon, que es requisito del proyecto, y porque el plan gratuito de Postgres en Render caduca.
+- **Integración Git de Vercel** (cada push despliega solo, sin pipeline propio): es lo más
+  simple y lo habitual. Se descartó porque la cuenta de Vercel está vinculada a una cuenta de
+  GitHub a la que el equipo ya no tiene acceso, así que Vercel no puede leer el repo
+  `ejairhh-a11y/eddie-store`. Además, con GitHub Actions el deploy queda **detrás de los tests**:
+  no se despliega nada que no pase lint, tipos, Vitest y E2E.
 
 ## Consecuencias
 
-- El deploy se dispara con cada push. Cada PR tiene su URL de preview y su propia rama de base de
-  datos, así que las migraciones se prueban antes de llegar a producción.
+- El deploy se dispara con cada push, pero solo si el pipeline está en verde. Cada PR tiene su URL
+  de preview y su propia rama de base de datos, así que las migraciones se prueban antes de llegar
+  a producción.
+- **Costo:** `VERCEL_TOKEN` es un secreto con permisos sobre el equipo de Vercel. Vive solo en los
+  secretos de GitHub, con caducidad, y hay que rotarlo si se filtra.
+- **Costo:** sin la integración Git, Vercel no comenta los PR con la URL del Preview: la URL queda
+  en el resumen del job de GitHub Actions. Que la integración de Neon cree la rama por Preview
+  depende de que la CLI envíe los metadatos de git del deploy; se verifica en el primer PR.
 - **Costo:** la rama de Neon de un Preview **se reutiliza en cada push del mismo PR** y acumula
   estado (citas, stock apartado). Por eso no sirve para tests deterministas: se usa solo para
   revisión manual y smoke tests (ADR 0013).
