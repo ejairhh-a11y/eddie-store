@@ -68,8 +68,14 @@ export function fromInstallmentCents(priceCents: number): number {
   return simulate({ priceCents, downPaymentCents: 0, termMonths: FROM_TERM }).installmentCents;
 }
 
-const euro = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" });
-const euroInt = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+// es-ES no agrupa los números de 4 cifras por defecto (4899 €): se fuerza "always" → 4.899 €.
+const euro = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", useGrouping: "always" });
+const euroInt = new Intl.NumberFormat("es-ES", {
+  style: "currency",
+  currency: "EUR",
+  maximumFractionDigits: 0,
+  useGrouping: "always",
+});
 
 /** `10.499 €` si no hay céntimos; `154,27 €` si los hay. */
 export function formatEuros(cents: number): string {
