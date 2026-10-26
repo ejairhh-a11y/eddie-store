@@ -45,11 +45,14 @@ export function slotsFor(date: LocalDate): Slot[] {
 const weekday = new Intl.DateTimeFormat("es-ES", { weekday: "short", timeZone: "UTC" });
 const dayMonth = new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "short", timeZone: "UTC" });
 
-/** `sáb 8 nov · 11:00` (Design.md §10). */
-export function formatSlot(date: LocalDate, hour: number): string {
+/** `sáb 8 nov` */
+export function formatDay(date: LocalDate): string {
   const [y, m, d] = date.split("-").map(Number);
   const dt = new Date(Date.UTC(y, m - 1, d));
-  const wd = weekday.format(dt).replace(".", "");
-  const dm = dayMonth.format(dt).replace(".", "");
-  return `${wd} ${dm} · ${String(hour).padStart(2, "0")}:00`;
+  return `${weekday.format(dt).replace(".", "")} ${dayMonth.format(dt).replace(".", "")}`;
+}
+
+/** `sáb 8 nov · 11:00` (Design.md §10). */
+export function formatSlot(date: LocalDate, hour: number): string {
+  return `${formatDay(date)} · ${String(hour).padStart(2, "0")}:00`;
 }
