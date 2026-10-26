@@ -6,11 +6,18 @@ import { rateLimits } from "./schema";
 // Límites contra abuso en la base de datos (ADR 0010). Cada operación es una sentencia atómica
 // propia, fuera de la transacción de la cita: un SLOT_TAKEN no revierte el contador.
 
+function intFromEnv(name: string, fallback: number): number {
+  const n = Number.parseInt(process.env[name] ?? "", 10);
+  return Number.isFinite(n) && n > 0 ? n : fallback; // un valor vacío o inválido no bloquea todo (SEC-12)
+}
+
 export const LIMITS = {
   bookingAttemptsPerHour: 5,
   bookingsPerDayPerIp: 3,
-  bookingsPerDayGlobal: Number(process.env.MAX_DAILY_BOOKINGS ?? 40),
-  loginFailuresPer15Min: 5,
+  /** Citas PENDIENTE simultáneas por origen (IP en HMAC). Frena el acaparamiento de stock (SEC-01). */
+  pendingPerOrigin: 2,
+  bookingsPerDayGlobal: intFromEnv("MAX_DAILY_BOOKINGS", 10),
+  loginAttemptsPer15Min: 5,
 } as const;
 
 function hourWindow(now: Date): Date {
@@ -65,10 +72,11 @@ export async function recordBooking(ip: string, today: LocalDate): Promise<void>
   await increment("booking-global", dayWindow(today));
 }
 
-export async function loginBlocked(ip: string, now: Date): Promise<boolean> {
-  return (await current(`login:${ip}`, quarterWindow(now))) >= LIMITS.loginFailuresPer15Min;
-}
-
-export async function recordLoginFailure(ip: string, now: Date): Promise<void> {
-  await increment(`login:${ip}`, quarterWindow(now));
+/**
+ * Cuenta un intento de login ANTES de verificar la contraseña y dice si se permite (SEC-02).
+ * El incremento y la comprobación son una sola operación atómica: las peticiones simultáneas no
+ * pueden saltarse el límite leyendo un contador viejo.
+ */
+export async function allowLoginAttempt(ip: string, now: Date): Promise<boolean> {
+  return (await increment(`login:${ip}`, quarterWindow(now))) <= LIMITS.loginAttemptsPer15Min;
 }

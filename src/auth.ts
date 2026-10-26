@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import { eq } from "drizzle-orm";
 import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
@@ -5,12 +6,16 @@ import { loginSchema } from "@/lib/schemas";
 import { ipHmac } from "@/server/codes";
 import { getDb } from "@/server/db";
 import { log } from "@/server/log";
-import { verifyPassword } from "@/server/password";
-import { loginBlocked, recordLoginFailure } from "@/server/rateLimit";
+import { hashPassword, verifyPassword } from "@/server/password";
+import { allowLoginAttempt } from "@/server/rateLimit";
 import { adminUsers } from "@/server/schema";
 
 // Auth.js con Credentials para el panel del concesionario (ADR 0008).
 export const SESSION_MAX_AGE_S = 8 * 60 * 60;
+
+// Hash argon2id de una contraseña aleatoria que nadie conoce: iguala el coste cuando el email no existe.
+let dummyHash: Promise<string> | undefined;
+const getDummyHash = () => (dummyHash ??= hashPassword(randomBytes(24).toString("base64url")));
 
 class RateLimited extends CredentialsSignin {
   code = "rate_limited";
@@ -37,7 +42,8 @@ export const {
       async authorize(raw, request) {
         const now = new Date();
         const ip = ipHmac(requestIp(request));
-        if (await loginBlocked(ip, now)) {
+        // Se cuenta el intento antes de verificar: atómico y también frena a las peticiones simultáneas.
+        if (!(await allowLoginAttempt(ip, now))) {
           log("warn", "auth.rate_limited");
           throw new RateLimited();
         }
@@ -45,9 +51,12 @@ export const {
         const [user] = parsed.success
           ? await getDb().select().from(adminUsers).where(eq(adminUsers.email, parsed.data.email))
           : [];
-        const valid = !!user && parsed.success && (await verifyPassword(user.passwordHash, parsed.data.password));
+        // Se verifica siempre contra un hash (el real o uno señuelo) para que el tiempo de respuesta
+        // no revele si el email existe (SEC-06).
+        const hashToCheck = user?.passwordHash ?? (await getDummyHash());
+        const passwordOk = parsed.success ? await verifyPassword(hashToCheck, parsed.data.password) : false;
+        const valid = !!user && passwordOk;
         if (!valid) {
-          await recordLoginFailure(ip, now);
           log("info", "auth.failed");
           return null;
         }
