@@ -58,6 +58,18 @@ La revisión adversarial señaló que no estaba definido:
 - **Rama `seed`:** cuando cambia el esquema o el catálogo, un workflow manual aplica las
   migraciones y el seed sobre ella.
 
+### Cambio 2026-10-26: catálogo inicial como migración de datos
+
+Las variables de Neon en Vercel son *Sensitive* y no se pueden leer desde fuera, así que un seed
+manual contra producción exigiría copiar credenciales a mano. Por eso:
+
+- **El catálogo de las 6 motos entra con una migración de datos** (`INSERT … ON CONFLICT (slug)
+  DO NOTHING`). Corre **una sola vez** por base de datos, como toda migración, y nunca
+  sobreescribe el stock real. `npm run db:seed` sigue existiendo para entornos locales y de CI.
+- **El primer admin** se crea en el build con `npm run db:seed-admin` **solo si
+  `SEED_ADMIN_EMAIL` y `SEED_ADMIN_PASSWORD` están definidas** y ese email no existe todavía
+  (`ON CONFLICT DO NOTHING`). Nunca cambia una contraseña existente.
+
 ### Limpieza
 
 - Las ramas `ci-*` se borran con `if: always()` al final del job, y además un workflow semanal

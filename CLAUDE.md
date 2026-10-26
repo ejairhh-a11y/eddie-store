@@ -6,8 +6,12 @@ El piloto consulta precio y stock real, simula la cuota y **agenda una cita** en
 
 ## Estado actual
 
-- **Fase:** los documentos están terminados y el **Sprint 0 (walking skeleton) está pendiente**.
-  Todavía no existe la app Next.js.
+- **Fase:** Sprint 0 terminado y en producción (https://eddie-store-yamaha-motocross.vercel.app,
+  `/api/health` OK). Siguiente: BACKLOG #2 en adelante.
+- **Modo de trabajo (decisión del usuario, 2026-10-26): autónomo total.** El agente escribe el
+  contrato de cada ítem en `contratos/`, lo aprueba contra TECH-DESIGN/ADRs, implementa con
+  pruebas y hace merge cuando el CI está en verde. Solo pregunta al usuario si aparece una
+  decisión que no esté en los documentos.
 - La carpeta `stitch-eddie-store/` es **solo referencia visual** (HTML de Google Stitch). No se
   modifica ni se despliega.
 - `docs/_archivo/apuestas/` es de otro proyecto. **Ignorarla.**
