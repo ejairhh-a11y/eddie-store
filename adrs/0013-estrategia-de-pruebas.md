@@ -74,6 +74,21 @@ un indicador del esfuerzo: el flujo feliz se completa en **4 pantallas o menos y
 o menos** (clics y campos rellenados). Los 5 minutos del PRD se validan con una prueba de
 usabilidad manual con al menos 3 personas, registrada en `docs/`.
 
+### Cambio 2026-10-26: Postgres de servicio en CI en lugar de rama efímera de Neon
+
+Al implementar el BACKLOG #2, la integración de Neon quedó instalada desde el Marketplace de
+Vercel, y la API key de Neon que exige crear ramas `ci-*` no está disponible para el pipeline.
+Para no bloquear las pruebas:
+
+- Las pruebas de **integración y el E2E en CI** corren contra un contenedor de servicio
+  **`postgres:16`** de GitHub Actions. La semántica que se prueba (índices únicos parciales,
+  `SELECT … FOR UPDATE`, transacciones READ COMMITTED) es la de PostgreSQL y es idéntica en Neon.
+- El código elige el driver por variable de entorno: con `DB_DRIVER=pg` usa `node-postgres`
+  (CI y local); sin ella, los drivers serverless de Neon (Vercel). Las consultas de Drizzle son
+  las mismas en ambos casos.
+- **Costo:** el driver serverless de Neon solo se ejercita en Vercel. Lo cubre el smoke test de
+  `/api/health` y la verificación manual del flujo en el Preview.
+
 ## Alternativas consideradas
 
 - **E2E contra el Preview de Vercel**: prueba el artefacto realmente desplegado. Se descartó

@@ -14,8 +14,23 @@ permissions:
 
 jobs:
   checks:
-    name: Lint, tipos, pruebas unitarias y build
+    name: Lint, tipos, pruebas unitarias, integración y build
     runs-on: ubuntu-latest
+    # Postgres real para integración y build (ADR 0013 §cambio 2026-10-26).
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: eddie_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DB_DRIVER: pg
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/eddie_test
+      DATABASE_URL_UNPOOLED: postgresql://postgres:postgres@localhost:5432/eddie_test
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,8 +40,9 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-      # Sin DATABASE_URL: se verifica la rama 503 del health (SPRINT0 §3, ADR 0013).
       - run: npm test
+      # Recrea el esquema desde las migraciones y deja la base con el catálogo.
+      - run: npm run test:int
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
@@ -39,6 +55,21 @@ jobs:
     name: E2E (Playwright)
     needs: checks
     runs-on: ubuntu-latest
+    # Base de datos propia y limpia en cada ejecución: el E2E es determinista (ADR 0013).
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: eddie_e2e
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DB_DRIVER: pg
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/eddie_e2e
+      DATABASE_URL_UNPOOLED: postgresql://postgres:postgres@localhost:5432/eddie_e2e
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -46,6 +77,7 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      - run: npm run db:migrate
       - uses: actions/download-artifact@v4
         with:
           name: next-build
