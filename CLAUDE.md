@@ -114,20 +114,28 @@ tests/          unit/ · integration/ · e2e/
   valores de los enums de dominio (`PENDIENTE`, `VENDIDA`, `CANCELADA`, `VENCIDA`, `COMPETICION`,
   `YOUTH`) y los códigos de cita `YZ-XXXX`.
 
-## Comandos (se definen en el Sprint 0; actualizar esta sección cuando existan)
+## Comandos
 
 ```
 npm run dev             # servidor local
+npm run build           # next build (no necesita base de datos)
+npm run build:vercel    # drizzle-kit migrate && next build (el que usa Vercel, vía vercel.json)
+npm run start           # sirve la build de producción
 npm run lint            # ESLint
-npm run typecheck       # tsc --noEmit
-npm test                # Vitest, pruebas unitarias
-npm run test:int        # Vitest, integración (requiere DATABASE_URL de una rama de Neon)
-npm run test:e2e        # Playwright
+npm run typecheck       # next typegen && tsc --noEmit
+npm test                # Vitest, pruebas unitarias (tests/unit)
+npm run test:e2e        # Playwright contra `next start` (en local, levanta antes `npm run start`)
 npm run db:generate     # drizzle-kit generate (nueva migración)
 npm run db:migrate      # drizzle-kit migrate (usa DATABASE_URL_UNPOOLED)
-npm run db:seed         # catálogo, idempotente
-npm run db:seed-admin   # admin desde SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD
 ```
+
+Previstos para ítems siguientes: `test:int` (#2), `db:seed` y `db:seed-admin` (#2).
+
+**Nota sobre esta máquina:** el enlace de nvm-windows en `C:\Program Files\nodejs` mezcla Node 22
+con el npm de la instalación 18, y `npm`/`npx` fallan con *"Class extends value undefined"*.
+Mientras no se repare (con `nvm install 22` + `nvm use 22` desde una terminal de administrador),
+se pueden ejecutar los binarios directamente con `node node_modules/<paquete>/...`, o usar el npm
+de otra versión: `node %APPDATA%\nvm\v20.17.0\node_modules\npm\bin\npm-cli.js <comando>`.
 
 ## Propiedad de rutas
 
@@ -135,8 +143,8 @@ Definida en [`SPRINT0.md`](SPRINT0.md) §4. Una tarea de un rol no modifica ruta
 
 | Rol | Rutas |
 |---|---|
-| TESTER | `tests/unit/**`, `tests/integration/**`, `tests/e2e/**`, `tests/fixtures/**`, `vitest.config.ts`, `playwright.config.ts` |
-| DEV | `src/**`, `public/**`, `drizzle/**`, `drizzle.config.ts`, `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`, `package.json`, `package-lock.json`, `.nvmrc`, `.env.example`, `vercel.json`, `.github/workflows/**` |
+| TESTER | `tests/unit/**`, `tests/integration/**`, `tests/e2e/**`, `tests/fixtures/**`, `vitest.config.mts`, `playwright.config.ts` |
+| DEV | `src/**`, `public/**`, `drizzle/**`, `drizzle.config.ts`, `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `package.json`, `package-lock.json`, `.nvmrc`, `.env.example`, `vercel.json`, `.github/workflows/**` |
 | Solo LEAD / humano | `CLAUDE.md`, `AGENTS.md`, `.claude/**`, `SPRINT0.md`, `contratos/**`, `PRD.md`, `Design.md`, `TECH-DESIGN.md`, `adrs/**`, `BACKLOG.md`, `docs/**` |
 | Nadie (solo lectura) | `stitch-eddie-store/**`, `docs/_archivo/**` |
 

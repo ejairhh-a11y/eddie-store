@@ -1,0 +1,9 @@
+# No se suben a Vercel en los deploys desde la CLI
+.env*
+!.env.example
+node_modules
+.next
+stitch-eddie-store
+docs
+playwright-report
+test-results

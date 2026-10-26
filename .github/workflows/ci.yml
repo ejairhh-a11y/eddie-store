@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Lint, tipos, pruebas unitarias y build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      # Sin DATABASE_URL: se verifica la rama 503 del health (SPRINT0 §3, ADR 0013).
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: next-build
+          path: .next
+          include-hidden-files: true
+          retention-days: 1
+
+  e2e:
+    name: E2E (Playwright)
+    needs: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: next-build
+          path: .next
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
+
+  # Deploy a Vercel desde el pipeline, solo si los tests pasan (ADR 0003).
+  # PR → Preview · push a main → Production. El build corre en Vercel, donde están las variables
+  # de Neon (son Sensitive y no se pueden descargar al runner).
+  deploy:
+    name: Deploy (${{ github.event_name == 'push' && 'Production' || 'Preview' }})
+    needs: [checks, e2e]
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'push' && 'production' || 'preview' }}
+    concurrency:
+      group: deploy-${{ github.event_name == 'push' && 'production' || github.ref }}
+      cancel-in-progress: false
+    env:
+      VERCEL_ORG_ID: team_nOpXVfsfEdmLX13F9IgJvxdu
+      VERCEL_PROJECT_ID: prj_o7L5gjEXNlQjbtqsBLOfOEpjXtHV
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --global vercel@62.0.0
+      - name: Deploy
+        id: deploy
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            url=$(vercel deploy --prod --yes --token "$VERCEL_TOKEN")
+          else
+            url=$(vercel deploy --yes --token "$VERCEL_TOKEN")
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "### Deploy: $url" >> "$GITHUB_STEP_SUMMARY"
+      - name: Smoke test GET /api/health
+        run: |
+          # Sin --token: vercel curl se lo reenvía a curl. La CLI toma VERCEL_TOKEN del entorno del job.
+          body=$(vercel curl --deployment "${{ steps.deploy.outputs.url }}" --yes /api/health)
+          echo "$body"
+          echo "$body" | grep -q '"status":"ok"'
