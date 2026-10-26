@@ -6,8 +6,12 @@ El piloto consulta precio y stock real, simula la cuota y **agenda una cita** en
 
 ## Estado actual
 
-- **Fase:** Sprint 0 terminado y en producción (https://eddie-store-yamaha-motocross.vercel.app,
-  `/api/health` OK). Siguiente: BACKLOG #2 en adelante.
+- **Fase:** BACKLOG #1–#16 implementados y **en producción**
+  (https://eddie-store-yamaha-motocross.vercel.app). Queda #17 (validación manual: Lighthouse,
+  teclado, prueba de usabilidad con 3 personas) y las sugerencias abiertas de `DRIFT.md` y
+  `docs/seguridad.md`. Pase de seguridad y auditoría de drift ya hechos.
+- **Pruebas actuales:** 20 unitarias, 38 de integración (Postgres real, incluida la concurrencia)
+  y 14 E2E (móvil 375 px). El CI las ejecuta todas antes de desplegar.
 - **Modo de trabajo (decisión del usuario, 2026-10-26): autónomo total.** El agente escribe el
   contrato de cada ítem en `contratos/`, lo aprueba contra TECH-DESIGN/ADRs, implementa con
   pruebas y hace merge cuando el CI está en verde. Solo pregunta al usuario si aparece una
@@ -43,7 +47,19 @@ documento correspondiente) y después el código**. Nunca se cambia el código e
 - **Plataforma:** Vercel + Neon (Marketplace) y GitHub Actions.
 - **Gestor de paquetes:** `npm`.
 
-## Estructura prevista (se crea en el Sprint 0)
+## Decisiones tomadas durante la implementación (no están en el TECH-DESIGN original)
+
+- **Postgres de servicio en CI** (`postgres:16`) en lugar de ramas efímeras de Neon; `DB_DRIVER=pg`
+  elige `node-postgres` en CI y local (ADR 0013, cambio 2026-10-26).
+- **Catálogo inicial como migración de datos** y admin creado en el build solo si existen
+  `SEED_ADMIN_*` (ADR 0016, cambio 2026-10-26). Borrar `SEED_ADMIN_PASSWORD` tras el primer login.
+- **`proxy.ts` devuelve 404 reales** para `/motos/[slug]` y `/cita/[token]` inexistentes (ADR 0005).
+- **Límites contra abuso ajustados** tras el pase de seguridad: tope global 10/día, 2 pendientes por
+  origen, login atómico, `ALREADY_BOOKED` sin fecha (ADR 0010).
+- **Cabeceras de seguridad globales** en `next.config.ts` (sugerencia S8 de la revisión).
+- **Deploy desde GitHub Actions** con `VERCEL_TOKEN`, no con la integración Git de Vercel (ADR 0003).
+
+## Estructura del código
 
 ```
 src/app/        rutas (/, /motos/[slug], /financiacion, /cita, /cita/[token], /privacidad, /admin/*, /api/health)

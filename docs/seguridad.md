@@ -491,6 +491,21 @@ Qué **no** tocar al remediar:
 7. **SEC-11, SEC-13, SEC-14 y SEC-15**, cuando haya decisión o al preparar la entrega
    (`deploy-pass`).
 
+## Resolución (2026-10-26, modo autónomo)
+
+| Hallazgo | Estado | Cómo |
+|---|---|---|
+| SEC-01 (HIGH) | **Resuelto / riesgo residual aceptado** | Tope global 40 → 10/día y nuevo límite de 2 citas pendientes por origen (`booking.ts`, `rateLimit.ts`). ADR 0010 reescrito sin la afirmación falsa. Una botnet con muchas IP sigue siendo posible; se acepta para la v1 |
+| SEC-02 | **Resuelto** | El login cuenta el intento antes de verificar con un `INSERT … ON CONFLICT` atómico; prueba con 12 peticiones simultáneas |
+| SEC-03 | **Resuelto / riesgo residual aceptado** | `ALREADY_BOOKED` ya no devuelve la fecha. Reservar con datos ajenos (sin verificar email/teléfono) queda aceptado |
+| SEC-04 | **Resuelto** | `tests/integration/adminSession.test.ts` (sesión, 8 h, `session_version`, admin inexistente); E2E del 404 del código corto |
+| SEC-06 | **Resuelto** | Se verifica siempre contra un hash (real o señuelo) |
+| SEC-07 | **Resuelto** | `/privacidad` declara el uso de Google Fonts |
+| SEC-08 | **Resuelto** | Acciones de admin con Zod y sin excepciones crudas |
+| SEC-09, SEC-12 | **Resuelto** | `safeDecode` en `proxy.ts`; `MAX_DAILY_BOOKINGS` vacío usa 10 |
+| SEC-10 | **Documentado** | `docs/despliegue.md` §6: borrar `SEED_ADMIN_PASSWORD` tras el primer login |
+| SEC-05, SEC-11, SEC-13, SEC-14, SEC-15 | **Abiertos / aceptados** | Sin rotación de contraseña ni revocación en la v1 (ADR 0008); CSP sin restricción de scripts (decisión pendiente); anonimización oportunista (ADR 0015); dependencias solo de desarrollo; verificar la rama `seed` de Preview y la protección de despliegue en el panel de Vercel |
+
 ## Gobernanza / Decisión requerida
 
 Este pase no decide nada de lo siguiente. Necesita una decisión humana:

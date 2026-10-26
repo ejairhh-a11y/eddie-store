@@ -277,3 +277,14 @@ de piloto y sin emails (No alcance respetado).
 4. **LEAD: documentar D05 y D08** en los ADRs (proxy, ventana diaria, `VENCIDA` a los 90 días, S8 aplicada) y actualizar CLAUDE.md (Estado actual, Comandos), antes del próximo cambio de código en esas zonas.
 5. **LEAD: alinear TECH-DESIGN y ADR 0013 con el pipeline real** (D09) y decidir si Lighthouse y Speed Insights (D10) entran antes del BACKLOG #17.
 6. **DEV, de baja prioridad:** D06 (reloj), D07 (requestId), D11 (páginas de error), D12 (responsive), D13 (recuento en "Cancelar origen") y D14 (IP desconocida).
+
+## Resolución (2026-10-26, modo autónomo)
+
+| Hallazgo | Estado | Cómo |
+|---|---|---|
+| D01 | **Resuelto** | Acciones de admin con Zod, códigos de `ErrorCode` y sin excepciones crudas (`src/app/admin/actions.ts`) |
+| D02 | **Resuelto** | `proxy.ts` devuelve 404 real para tokens inexistentes; probado en producción |
+| D03 | **Parcial** | Añadidas pruebas de `requireAdmin`, concurrencia de login, tope por origen y E2E del 404. Siguen sin prueba automática: `/api/health` 200 en CI, logs sin datos personales y el reintento con SAVEPOINT |
+| D04 | **Resuelto** | El E2E tiene un camino directo de 4 pantallas y una aserción de stock que puede fallar (2 → 1) |
+| D05, D08, D09 | **Resuelto** | Documentado en ADR 0005 y 0010, `CLAUDE.md` (sección de decisiones) y `docs/despliegue.md` |
+| D06, D07, D10–D14 | **Abiertos** | Deuda menor: reloj de `booking.ts`/`adminSession.ts`, `requestId`/`durationMs` en logs, Speed Insights, estilo de `error.tsx`, buscador en 375 px, conteo en «Cancelar origen», cubo de IP desconocida |
