@@ -1,5 +1,189 @@
 @import "tailwindcss";
 
-/* Los tokens de Stitch (colores, tipografía, espaciados) se agregan en el BACKLOG #3 (ADR 0012). */
+/* Stitch usa darkMode: "class" (ADR 0012). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Tokens de Stitch traducidos 1:1 desde su tailwind.config (Design.md §2, ADR 0012).
+ * Los nombres se conservan para que las clases del HTML de Stitch funcionen sin cambios.
+ */
 @theme {
+  /* Color */
+  --color-background: #0f131c;
+  --color-tertiary-fixed-dim: #ffb3b3;
+  --color-on-secondary: #00363d;
+  --color-on-secondary-fixed: #001f24;
+  --color-on-error: #690005;
+  --color-on-tertiary-fixed: #400009;
+  --color-surface-dim: #0f131c;
+  --color-tertiary-container: #c0002e;
+  --color-tertiary: #ffb3b3;
+  --color-surface: #0f131c;
+  --color-error: #ffb4ab;
+  --color-secondary: #bdf4ff;
+  --color-surface-container-lowest: #0a0e16;
+  --color-on-primary-container: #d1d7ff;
+  --color-on-secondary-container: #00616d;
+  --color-surface-container-low: #181c24;
+  --color-on-background: #dfe2ee;
+  --color-on-primary-fixed-variant: #0036bb;
+  --color-surface-container-highest: #31353e;
+  --color-secondary-fixed-dim: #00daf3;
+  --color-inverse-primary: #0d4aef;
+  --color-surface-bright: #353942;
+  --color-on-secondary-fixed-variant: #004f58;
+  --color-primary-container: #0e4bef;
+  --color-secondary-container: #00e3fd;
+  --color-on-tertiary: #680014;
+  --color-outline-variant: #434656;
+  --color-on-surface: #dfe2ee;
+  --color-on-surface-variant: #c4c5d9;
+  --color-primary-fixed: #dde1ff;
+  --color-error-container: #93000a;
+  --color-surface-tint: #b8c4ff;
+  --color-surface-container: #1c2028;
+  --color-tertiary-fixed: #ffdad9;
+  --color-on-tertiary-container: #ffcecd;
+  --color-inverse-surface: #dfe2ee;
+  --color-on-error-container: #ffdad6;
+  --color-secondary-fixed: #9cf0ff;
+  --color-primary-fixed-dim: #b8c4ff;
+  --color-on-primary: #002486;
+  --color-primary: #b8c4ff;
+  --color-outline: #8e90a2;
+  --color-surface-variant: #31353e;
+  --color-on-primary-fixed: #001454;
+  --color-inverse-on-surface: #2c3039;
+  --color-surface-container-high: #262a33;
+  --color-on-tertiary-fixed-variant: #920021;
+
+  /* Espaciado */
+  --spacing-gutter-desktop: 1.5rem;
+  --spacing-margin-mobile: 1rem;
+  --spacing-space-3xl: 4.5rem;
+  --spacing-margin-tablet: 2rem;
+  --spacing-space-2xs: 0.125rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-4xl: 6rem;
+  --spacing-space-md: 1rem;
+  --spacing-margin-desktop: 3.5rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-2xl: 3rem;
+
+  /* Familias: next/font define --font-barlow, --font-grotesk y --font-jetbrains en <html> */
+  --font-display-hero-mobile: var(--font-barlow), sans-serif;
+  --font-body-sm: var(--font-grotesk), sans-serif;
+  --font-headline-xl-mobile: var(--font-barlow), sans-serif;
+  --font-body-lg: var(--font-grotesk), sans-serif;
+  --font-label-caps: var(--font-barlow), sans-serif;
+  --font-headline-xl: var(--font-barlow), sans-serif;
+  --font-headline-lg: var(--font-barlow), sans-serif;
+  --font-headline-md: var(--font-barlow), sans-serif;
+  --font-label-data: var(--font-jetbrains), monospace;
+  --font-caption-spec: var(--font-jetbrains), monospace;
+  --font-display-hero: var(--font-barlow), sans-serif;
+  --font-body-md: var(--font-grotesk), sans-serif;
+  --font-headline-sm: var(--font-barlow), sans-serif;
+
+  /* Tamaños tipográficos con interlineado, tracking y peso */
+  --text-display-hero-mobile: 48px;
+  --text-display-hero-mobile--line-height: 50px;
+  --text-display-hero-mobile--letter-spacing: -0.01em;
+  --text-display-hero-mobile--font-weight: 800;
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 18px;
+  --text-body-sm--font-weight: 400;
+  --text-headline-xl-mobile: 36px;
+  --text-headline-xl-mobile--line-height: 38px;
+  --text-headline-xl-mobile--letter-spacing: 0.02em;
+  --text-headline-xl-mobile--font-weight: 700;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+  --text-label-caps: 14px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.12em;
+  --text-label-caps--font-weight: 700;
+  --text-headline-xl: 56px;
+  --text-headline-xl--line-height: 58px;
+  --text-headline-xl--letter-spacing: 0.02em;
+  --text-headline-xl--font-weight: 700;
+  --text-headline-lg: 38px;
+  --text-headline-lg--line-height: 42px;
+  --text-headline-lg--letter-spacing: 0.03em;
+  --text-headline-lg--font-weight: 700;
+  --text-headline-md: 26px;
+  --text-headline-md--line-height: 30px;
+  --text-headline-md--letter-spacing: 0.04em;
+  --text-headline-md--font-weight: 600;
+  --text-label-data: 12px;
+  --text-label-data--line-height: 16px;
+  --text-label-data--letter-spacing: 0.08em;
+  --text-label-data--font-weight: 500;
+  --text-caption-spec: 10px;
+  --text-caption-spec--line-height: 14px;
+  --text-caption-spec--letter-spacing: 0.05em;
+  --text-caption-spec--font-weight: 400;
+  --text-display-hero: 84px;
+  --text-display-hero--line-height: 84px;
+  --text-display-hero--letter-spacing: -0.02em;
+  --text-display-hero--font-weight: 800;
+  --text-body-md: 15px;
+  --text-body-md--line-height: 22px;
+  --text-body-md--font-weight: 400;
+  --text-headline-sm: 20px;
+  --text-headline-sm--line-height: 24px;
+  --text-headline-sm--letter-spacing: 0.05em;
+  --text-headline-sm--font-weight: 600;
+}
+
+/* Barra de scroll oculta solo en la navegación horizontal (no en toda la página: Design.md §8). */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  /* Foco visible en todo elemento interactivo (Design.md §8). */
+  :focus-visible {
+    outline: 2px solid var(--color-secondary-container);
+    outline-offset: 2px;
+  }
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

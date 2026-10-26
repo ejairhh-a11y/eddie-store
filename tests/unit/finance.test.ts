@@ -63,5 +63,7 @@ describe("formato es-ES", () => {
   it("formatea euros", () => {
     expect(formatEuros(YZ450F).replace(/\s/g, " ")).toBe("10.499 €");
     expect(formatEuros(15_427).replace(/\s/g, " ")).toBe("154,27 €");
+    expect(formatEuros(489_900).replace(/\s/g, " ")).toBe("4.899 €");
+    expect(formatEuros(925_836).replace(/\s/g, " ")).toBe("9.258,36 €");
   });
 });
