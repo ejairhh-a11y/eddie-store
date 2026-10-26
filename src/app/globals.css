@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+/* Los tokens de Stitch (colores, tipografía, espaciados) se agregan en el BACKLOG #3 (ADR 0012). */
+@theme {
+}

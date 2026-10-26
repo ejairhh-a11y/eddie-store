@@ -16,7 +16,8 @@ CSS declaradas en `@theme`.
 
 ## Decisión
 
-- Se usa **Tailwind CSS v4** con `@tailwindcss/postcss`.
+- Se usa **Tailwind CSS v4** con la integración que trae `create-next-app@16`: el loader
+  `@tailwindcss/turbopack` declarado en `next.config.ts`, sin `postcss.config.mjs`.
 - Los tokens de Stitch se traducen **una vez** a `src/app/globals.css`, dentro de `@theme`,
   **conservando exactamente los nombres**:
   - `--color-surface-container-high: #262a33;` → `bg-surface-container-high`

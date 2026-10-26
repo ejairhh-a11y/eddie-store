@@ -44,8 +44,8 @@ corren, CI pasa y existe un primer deploy de Preview en Vercel.
 
 | Rol | Rutas |
 |---|---|
-| TESTER | `tests/unit/**`, `tests/integration/**`, `tests/e2e/**`, `tests/fixtures/**`, `vitest.config.ts`, `playwright.config.ts` |
-| DEV | `src/**`, `public/**`, `drizzle/**`, `drizzle.config.ts`, `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`, `package.json`, `package-lock.json`, `.nvmrc`, `.env.example`, `vercel.json`, `.github/workflows/**` |
+| TESTER | `tests/unit/**`, `tests/integration/**`, `tests/e2e/**`, `tests/fixtures/**`, `vitest.config.mts`, `playwright.config.ts` |
+| DEV | `src/**`, `public/**`, `drizzle/**`, `drizzle.config.ts`, `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `package.json`, `package-lock.json`, `.nvmrc`, `.env.example`, `vercel.json`, `.github/workflows/**` |
 | Solo LEAD / humano | `CLAUDE.md`, `AGENTS.md`, `.claude/**`, `SPRINT0.md`, `contratos/**`, `PRD.md`, `Design.md`, `TECH-DESIGN.md`, `adrs/**`, `BACKLOG.md`, `docs/**` |
 | Nadie (solo lectura) | `stitch-eddie-store/**` (referencia visual), `docs/_archivo/**` |
 
@@ -59,7 +59,7 @@ corren, CI pasa y existe un primer deploy de Preview en Vercel.
 | # | Criterio | Cómo se verifica |
 |---|---|---|
 | 1 | La app arranca en local con Node 22 | Comando: `npm ci && npm run dev`; `GET http://localhost:3000/` → 200 |
-| 2 | La build de producción compila | Comando: `npm run build` sin errores (incluye `drizzle-kit migrate` sin migraciones) |
+| 2 | La build de producción compila | Comando: `npm run build` sin errores. En Vercel, `npm run build:vercel` también ejecuta `drizzle-kit migrate` (sin migraciones) |
 | 3 | Se conecta a Neon | Prueba: con un `DATABASE_URL` válido, `GET /api/health` → **200** `{"status":"ok","db":"ok"}` (hace `SELECT 1`) |
 | 4 | El health check detecta la base de datos caída | Prueba: con un `DATABASE_URL` inválido o inaccesible, `GET /api/health` → **503** `{"status":"error","db":"down"}`, sin stack trace ni la cadena de conexión en el cuerpo |
 | 5 | Lint y tipos | Comandos: `npm run lint` y `npm run typecheck` (`tsc --noEmit`, `strict: true`) sin errores |
@@ -124,4 +124,5 @@ corren, CI pasa y existe un primer deploy de Preview en Vercel.
 
 | Fecha | Cambio | Aprobado por |
 |---|---|---|
+| 2026-10-25 | Ajustes al implementar: (a) `npm run build` es `next build` a secas para poder compilar en local sin base de datos; la migración en el build vive en `build:vercel` (`drizzle-kit migrate && next build`), que `vercel.json` usa como `buildCommand`. (b) `create-next-app@16` integra Tailwind v4 con `@tailwindcss/turbopack` en `next.config.ts`: no hay `postcss.config.mjs`. (c) El config de Vitest es `vitest.config.mts`, porque Vite exige ESM. (d) `typecheck` es `next typegen && tsc --noEmit`, porque los tipos de rutas (`LayoutProps`) se generan. (e) `cacheComponents: true` ya viene activado por defecto en la plantilla. | productowner-eddie (implícito en "arranca la implementación"; revisar) |
 | 2026-10-25 | Respuestas a §7: (1) `cacheComponents` sí; (2) tokens en el #3; (3) en CI solo el 503, y el 200 contra el Preview; (4) migración cableada en el build; (5) repo `eddie-store` **público** en la cuenta `ejairhh-a11y`; (6) se **reutiliza** el proyecto de Vercel `eddie-store-yamaha-motocross`; (7) la app vive en la **raíz** del repo. | productowner-eddie |
