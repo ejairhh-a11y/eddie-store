@@ -28,6 +28,11 @@ export default function PrivacyPage() {
         La página de confirmación de tu cita usa un enlace secreto y muestra tu teléfono enmascarado. Solo el personal del
         concesionario, con usuario y contraseña, ve los datos completos.
       </p>
+      <h2 className="font-headline-sm text-headline-sm uppercase text-on-surface">Servicios de terceros</h2>
+      <p>
+        Los iconos del sitio se cargan desde Google Fonts, por lo que Google recibe tu dirección IP al visitar cualquier página.
+        No usamos cookies de seguimiento ni analítica de terceros.
+      </p>
       <h2 className="font-headline-sm text-headline-sm uppercase text-on-surface">Tus derechos</h2>
       <p>Puedes pedir acceso, rectificación o supresión de tus datos escribiéndonos por WhatsApp con tu código de cita.</p>
     </article>

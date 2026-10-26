@@ -8,6 +8,7 @@ import { generateAccessToken, generateCode, hashToken } from "./codes";
 import { CONSTRAINTS } from "./constraints";
 import { getDb, withTransaction, type Db, type Tx } from "./db";
 import { pgErrorOf } from "./pgErrors";
+import { LIMITS } from "./rateLimit";
 import { fail, ok, type Result } from "./result";
 import { appointments, motorcycles, type Financing } from "./schema";
 
@@ -15,7 +16,7 @@ import { appointments, motorcycles, type Financing } from "./schema";
 // franja y la persona, y traducción de errores por nombre de restricción.
 
 export type CreatedAppointment = { code: string; token: string; slotStart: Date; motoName: string };
-export type BookingFailure = { alternatives?: { date: LocalDate; hour: number }[]; existingDate?: LocalDate; existingHour?: number };
+export type BookingFailure = { alternatives?: { date: LocalDate; hour: number }[] };
 
 const CODE_RETRIES = 3;
 
@@ -57,6 +58,15 @@ export async function createAppointment(
         return fail<BookingFailure>("OUT_OF_STOCK");
       }
 
+      // Tope de citas pendientes simultáneas por origen: frena el acaparamiento de stock (SEC-01).
+      if (ctx.ipHmac) {
+        const [pending] = await tx
+          .select({ n: sql<number>`count(*)::int` })
+          .from(appointments)
+          .where(and(eq(appointments.ipHmac, ctx.ipHmac), eq(appointments.status, "PENDIENTE")));
+        if (Number(pending?.n ?? 0) >= LIMITS.pendingPerOrigin) return fail<BookingFailure>("RATE_LIMITED");
+      }
+
       const financing = financingFor(moto.priceCents, input);
       const token = generateAccessToken();
       for (let attempt = 1; ; attempt++) {
@@ -94,7 +104,9 @@ export async function createAppointment(
       return fail("SLOT_TAKEN", { details: { alternatives: await nearestFreeSlots(getDb(), input.date, ctx.today) } });
     }
     if (error instanceof AlreadyBooked) {
-      return fail("ALREADY_BOOKED", { details: await existingBooking(getDb(), input.email, input.phone) });
+      // No se revela la fecha de la cita existente: quien conozca un email o teléfono ajeno no debe
+      // poder averiguar cuándo va esa persona al concesionario (SEC-03).
+      return fail("ALREADY_BOOKED");
     }
     throw error;
   }
@@ -138,17 +150,6 @@ export async function nearestFreeSlots(db: Db, from: LocalDate, today: LocalDate
     }
   }
   return out;
-}
-
-async function existingBooking(db: Db, email: string, phone: string): Promise<BookingFailure> {
-  const [row] = await db
-    .select({ slotDate: appointments.slotDate, slotStart: appointments.slotStart })
-    .from(appointments)
-    .where(and(eq(appointments.status, "PENDIENTE"), or(eq(appointments.email, email), eq(appointments.phoneNormalized, phone))))
-    .limit(1);
-  if (!row) return {};
-  const hour = slotsFor(row.slotDate).find((s) => s.start.getTime() === row.slotStart.getTime())?.hour;
-  return { existingDate: row.slotDate, existingHour: hour };
 }
 
 /** Datos de la confirmación por token (ADR 0011). El código corto no da acceso. */

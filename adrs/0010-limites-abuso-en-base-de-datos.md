@@ -61,6 +61,26 @@ ni con un hash sin secreto, porque un SHA-256 simple se invierte por fuerza brut
 - El límite de 3 por día cuenta **citas creadas con éxito**: se incrementa después del commit de
   la cita.
 
+### Cambio 2026-10-26 (pase de seguridad: SEC-01, SEC-02, SEC-03, SEC-12)
+
+- **El tope global baja a 10 citas por día** (`MAX_DAILY_BOOKINGS`; un valor vacío o inválido usa 10, no 0).
+  El tope anterior de 40 superaba el stock total del catálogo (17 unidades), así que la frase "no
+  puede agotar el stock" era falsa.
+- **Nuevo límite: 2 citas PENDIENTE simultáneas por origen** (`ip_hmac`), comprobado dentro de la
+  transacción de la cita. Con ello un atacante necesita muchas IP distintas para acaparar stock.
+- **Riesgo residual aceptado:** una botnet con muchas IP puede ocupar el stock durante días (cada cita
+  aparta una unidad hasta 30 días). Se mitiga con el tope global, "Cancelar origen" en el panel y la
+  liberación automática por fecha; un CAPTCHA o una verificación por SMS quedan fuera de la v1.
+- **El límite de login cuenta el intento antes de verificar la contraseña** (un único `INSERT … ON
+  CONFLICT` atómico). Así las peticiones simultáneas no se lo saltan. Se cuentan intentos, no solo
+  fallos: 5 intentos cada 15 minutos por IP.
+- **`ALREADY_BOOKED` ya no devuelve la fecha de la cita existente**: quien conozca el email o el
+  teléfono de otra persona no puede averiguar cuándo va al concesionario. Queda como riesgo
+  aceptado que alguien reserve con datos ajenos y bloquee a esa persona (no hay verificación de
+  email o teléfono en la v1).
+- Los contadores diario por IP y global conservan la lectura-luego-incremento: una carrera permite
+  como mucho unas pocas citas de más, acotadas por el tope de pendientes por origen.
+
 ## Alternativas consideradas
 
 - **Upstash Redis con `@upstash/ratelimit`**: el estándar en Vercel, con ventana deslizante. Se

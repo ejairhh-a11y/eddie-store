@@ -204,13 +204,9 @@ function Alert({
       </>
     );
   } else if (state.code === "ALREADY_BOOKED") {
-    const d = state.details;
     body = (
       <>
-        <p>
-          Ya tienes una cita{d?.existingDate && d.existingHour !== undefined ? ` el ${formatSlot(d.existingDate, d.existingHour)}` : ""}.
-          Para cambiarla, escríbenos por WhatsApp.
-        </p>
+        <p>Ya tienes una cita pendiente con esos datos. Para cambiarla, escríbenos por WhatsApp.</p>
         <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex mt-space-xs items-center gap-space-xs px-space-sm min-h-[44px] rounded bg-surface-container-high text-on-surface font-label-caps text-label-caps uppercase">
           <Icon name="chat" className="text-[18px]" /> Escribir por WhatsApp
         </a>

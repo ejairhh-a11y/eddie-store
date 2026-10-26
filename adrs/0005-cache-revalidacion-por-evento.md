@@ -52,6 +52,15 @@ La primera versión de este ADR tenía tres errores, señalados por la revisión
 - **"Mi cita"** (ADR 0009) lee los parámetros de la URL desde un Client Component envuelto en
   `<Suspense>`, para que no convierta en dinámico todo el layout.
 
+### Cambio 2026-10-26: 404 reales desde `proxy.ts`
+
+Con `cacheComponents` y el renderizado en streaming, un `notFound()` dentro de `<Suspense>` llega al
+navegador con estado **200**. Para que un modelo inexistente (`/motos/xx`) o una cita inexistente
+(`/cita/{token}`) respondan **404 de verdad**, `proxy.ts` lo comprueba antes de renderizar: los
+slugs contra el catálogo fijo y los tokens contra la base de datos (con `findByToken`). Costo: una
+consulta extra por visita a la confirmación; si la base de datos falla, el proxy no bloquea y la
+página muestra su propio error.
+
 ## Alternativas consideradas
 
 - **Next.js 15 con `unstable_cache`**: el modelo de caché anterior, muy documentado. Se descartó
